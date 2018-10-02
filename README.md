@@ -1,2 +1,3 @@
 # Trellone
-A Trello Clone
+
+A Trello Clone.
