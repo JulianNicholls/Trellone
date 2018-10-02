@@ -1,0 +1,17 @@
+{
+    "extends": "eslint:recommended",
+
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+
+    "rules": {
+        "no-console": "off",
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "jsx-a11y/href-no-hash": "off"
+    }
+}
