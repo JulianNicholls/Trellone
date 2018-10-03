@@ -14,24 +14,39 @@ class SignupPage extends Component {
     this.setState({ [name]: value });
   };
 
+  signup = async e => {
+    e.preventDefault();
+
+    const response = await fetch('http://localhost:3100/signup', {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(this.state)
+    });
+
+    const json = await response.json();
+    console.log(json);
+  };
+
   render() {
     return (
       <div>
         <h1 className="has-text-centered is-size-3">Signup</h1>
         <div className="columns">
-          <div className="column is-half is-offset-one-quarter">
-            <form>
+          <div className="column is-half is-offset-one-quarter auth-form">
+            <form onSubmit={this.signup}>
               <div className="field">
                 <label className="label" htmlFor="displayName">
                   Display Name
                 </label>
                 <div className="control">
                   <input
-                    class="input is-medium"
+                    className="input is-medium"
                     type="text"
                     id="displayName"
                     name="displayName"
-                    autoFocus="true"
+                    autoFocus
                     onChange={this.updateField}
                   />
                 </div>
@@ -43,7 +58,7 @@ class SignupPage extends Component {
                 </label>
                 <div className="control">
                   <input
-                    class="input is-medium"
+                    className="input is-medium"
                     type="url"
                     id="avatarURL"
                     name="avatarURL"
@@ -58,7 +73,7 @@ class SignupPage extends Component {
                 </label>
                 <div className="control">
                   <input
-                    class="input is-medium"
+                    className="input is-medium"
                     type="email"
                     id="email"
                     name="email"
@@ -73,7 +88,7 @@ class SignupPage extends Component {
                 </label>
                 <div className="control">
                   <input
-                    class="input is-medium"
+                    className="input is-medium"
                     type="password"
                     id="password"
                     name="password"

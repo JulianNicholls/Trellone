@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Header = () => {
+import { logout } from '../modules/auth';
+
+const Header = ({ auth, logout }) => {
+  const logoutUser = () => logout();
+
   return (
     <nav
       className="navbar is-primary"
@@ -14,21 +19,37 @@ const Header = () => {
       </div>
       <div className="navbar-menu">
         <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a class="button is-info" href="/login">
-                Log in
-              </a>
+          {auth.token ? (
+            <React.Fragment>
+              <div className="navbar-item">{auth.user.displayName}</div>
+              <div className="navbar-item">
+                <button onClick={logoutUser} className="button is-link">
+                  Log out{' '}
+                </button>
+              </div>
+            </React.Fragment>
+          ) : (
+            <div className="navbar-item">
+              <div className="buttons">
+                <a className="button is-link" href="/login">
+                  Log in
+                </a>
 
-              <a class="button is-info" href="/signup">
-                Sign up
-              </a>
+                <a className="button is-link" href="/signup">
+                  Sign up
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </nav>
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({ auth: state.auth });
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Header);
