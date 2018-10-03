@@ -6,7 +6,7 @@ require('../services/passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 
 /* GET users listing. */
-router.get('/current', requireAuth, function(req, res) {
+router.get('/current', requireAuth, (req, res) => {
   const { displayName, email, avatarURL } = req.user;
   res.json({ displayName, email, avatarURL });
 });

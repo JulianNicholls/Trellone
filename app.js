@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const rootRouter = require('./routes/root');
 const usersRouter = require('./routes/users');
+const boardsRouter = require('./routes/boards');
 
 mongoose.connect(
   'mongodb://localhost/trellone',
@@ -23,5 +24,6 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.use('/', rootRouter);
 app.use('/users', usersRouter);
+app.use('/boards', boardsRouter);
 
 module.exports = app;
