@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { signup } from '../modules/auth';
 
 class SignupPage extends Component {
   state = {
@@ -17,24 +20,25 @@ class SignupPage extends Component {
   signup = async e => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:3100/signup', {
-      headers: {
-        'Content-type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify(this.state)
+    this.props.signup(this.state, () => {
+      this.props.history.push('/');
     });
-
-    const json = await response.json();
-    console.log(json);
   };
 
   render() {
+    const { email, password, avatarURL, displayName } = this.state;
+    const { error } = this.props;
+
     return (
       <div>
         <h1 className="has-text-centered is-size-3">Signup</h1>
         <div className="columns">
           <div className="column is-half is-offset-one-quarter auth-form">
+            {error && (
+              <h5 className="error has-background-danger has-text-white">
+                {error}
+              </h5>
+            )}
             <form onSubmit={this.signup}>
               <div className="field">
                 <label className="label" htmlFor="displayName">
@@ -46,6 +50,7 @@ class SignupPage extends Component {
                     type="text"
                     id="displayName"
                     name="displayName"
+                    value={displayName}
                     autoFocus
                     onChange={this.updateField}
                   />
@@ -62,6 +67,7 @@ class SignupPage extends Component {
                     type="url"
                     id="avatarURL"
                     name="avatarURL"
+                    value={avatarURL}
                     onChange={this.updateField}
                   />
                 </div>
@@ -77,6 +83,7 @@ class SignupPage extends Component {
                     type="email"
                     id="email"
                     name="email"
+                    value={email}
                     onChange={this.updateField}
                   />
                 </div>
@@ -92,6 +99,7 @@ class SignupPage extends Component {
                     type="password"
                     id="password"
                     name="password"
+                    value={password}
                     onChange={this.updateField}
                   />
                 </div>
@@ -109,4 +117,9 @@ class SignupPage extends Component {
   }
 }
 
-export default SignupPage;
+const mapStateToProps = state => ({ error: state.auth.error });
+
+export default connect(
+  mapStateToProps,
+  { signup }
+)(SignupPage);

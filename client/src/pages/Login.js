@@ -6,8 +6,7 @@ import { login } from '../modules/auth';
 class LoginPage extends Component {
   state = {
     email: '',
-    password: '',
-    error: ''
+    password: ''
   };
 
   updateField = e => {
@@ -19,28 +18,14 @@ class LoginPage extends Component {
   loginUser = async e => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:3100/login', {
-        headers: {
-          'Content-type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(this.state)
-      });
-
-      const auth = await response.json();
-      console.log(auth);
-
-      this.props.login(auth);
-    } catch (_) {
-      this.setState({
-        error: 'The email address or password was not recognised'
-      });
-    }
+    this.props.login(this.state, () => {
+      this.props.history.push('/');
+    });
   };
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password } = this.state;
+    const { error } = this.props;
 
     return (
       <div>
@@ -97,7 +82,9 @@ class LoginPage extends Component {
   }
 }
 
+const mapStateToProps = state => ({ error: state.auth.error });
+
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginPage);

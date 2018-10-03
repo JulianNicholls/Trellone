@@ -9,6 +9,12 @@ const reducers = combineReducers({
   auth: authReducer
 });
 
+const token = localStorage.auth;
+
 export default () => {
-  return createStore(reducers, composeEnhacers(applyMiddleware(thunk)));
+  return createStore(
+    reducers,
+    { auth: token ? { token } : {} },
+    composeEnhacers(applyMiddleware(thunk))
+  );
 };

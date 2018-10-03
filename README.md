@@ -11,7 +11,8 @@ A Trello Clone.
   * [ ] Create model for boards
   * [ ] Create model for lists
   * [ ] Create model for cards
-* [ ] Create Endpoints for Login and Signup
+* [x] Create Endpoints for Login and Signup
+* [x] Create Endpoint for current user
 * [ ] Create Endpoints for Boards
   * [ ] Create Endpoint for user boards 
   * [ ] Create Endpoint for single board
@@ -33,9 +34,9 @@ A Trello Clone.
 * [x] Set up Router
 * [ ] Set up Redux store
 * [x] Create Signup page
-  * [ ] Store returned token in Redux store
+  * [x] Store returned token in Redux store
 * [x] Create Login page
-  * [ ] Store returned token in Redux store
+  * [x] Store returned token in Redux store
 * [x] Create Boards page
   * [ ] Show user boards
   * [ ] Create new board
