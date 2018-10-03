@@ -4,7 +4,12 @@
   margin-top: 2rem;
   padding: 1rem;
 }
+
 .error {
   margin: 0.5rem 0; 
   padding: 0.5rem;
+}
+
+.boards {
+  margin-top: 2rem;
 }

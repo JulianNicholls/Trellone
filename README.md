@@ -14,9 +14,9 @@ A Trello Clone.
 * [x] Create Endpoints for Login and Signup
 * [x] Create Endpoint for current user
 * [ ] Create Endpoints for Boards
-  * [ ] Create Endpoint for user boards 
+  * [x] Create Endpoint for user boards 
   * [ ] Create Endpoint for single board
-  * [ ] Create Endpoint for new board
+  * [x] Create Endpoint for new board
 * [ ] Create Endpoints for Lists
   * [ ] Create Endpoint for board lists
   * [ ] Create Endpoint for single list
@@ -33,6 +33,10 @@ A Trello Clone.
 * [x] Install Router and Redux modules
 * [x] Set up Router
 * [x] Set up Redux store
+  * [x] Set up ducks for auth
+  * [ ] Set up ducks for boards
+  * [ ] Set up ducks for lists
+  * [ ] Set up ducks for cards
 * [x] Create Signup page
   * [x] Store returned token in Redux store
 * [x] Create Login page
