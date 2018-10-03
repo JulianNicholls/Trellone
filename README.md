@@ -6,11 +6,11 @@ A Trello Clone.
 
 * [x] Install Express, Morgan, CORS and make basic server
 * [x] Install Passport, Bcrypt and Mongoose for authentication
-* [ ] Create Mongoose models
+* [x] Create Mongoose models
   * [x] Create model for users
-  * [ ] Create model for boards
-  * [ ] Create model for lists
-  * [ ] Create model for cards
+  * [x] Create model for boards
+  * [x] Create model for lists
+  * [x] Create model for cards
 * [x] Create Endpoints for Login and Signup
 * [x] Create Endpoint for current user
 * [ ] Create Endpoints for Boards
@@ -32,7 +32,7 @@ A Trello Clone.
 * [x] Remove c-r-a excesses :-)
 * [x] Install Router and Redux modules
 * [x] Set up Router
-* [ ] Set up Redux store
+* [x] Set up Redux store
 * [x] Create Signup page
   * [x] Store returned token in Redux store
 * [x] Create Login page
