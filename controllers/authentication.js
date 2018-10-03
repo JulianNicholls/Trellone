@@ -16,11 +16,9 @@ exports.signup = (req, res, next) => {
 
   // An email address and password are mandatory
   if (!email || !password || !displayName) {
-    return res
-      .status(422)
-      .send({
-        error: 'You must provide an display name, email address, and password'
-      });
+    return res.status(422).send({
+      error: 'You must provide an display name, email address, and password'
+    });
   }
 
   // See if a user exists with the given email address
@@ -38,8 +36,18 @@ exports.signup = (req, res, next) => {
     user.save((err, data) => {
       if (err) return next(err);
 
+      const { id, email, avatarURL, displayName } = user;
+
       // Respond to request with a JWT
-      res.json({ token: tokenForUser(user) });
+      res.json({
+        token: tokenForUser(user),
+        user: {
+          id,
+          email,
+          avatarURL,
+          displayName
+        }
+      });
     });
   });
 };
@@ -49,5 +57,16 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res) => {
   // Passport has put the user specified in the done() callback
   // into the req
-  res.json({ token: tokenForUser(req.user) });
+
+  const { id, email, avatarURL, displayName } = req.user;
+
+  res.json({
+    token: tokenForUser(req.user),
+    user: {
+      id,
+      email,
+      avatarURL,
+      displayName
+    }
+  });
 };
