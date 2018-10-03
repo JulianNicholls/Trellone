@@ -27,22 +27,23 @@ exports.signup = (req, res, next) => {
 
     // If so, return an error
     if (existingUser) {
-      return res.status(422).send({ error: 'Email is in use' });
+      return res
+        .status(422)
+        .send({ error: 'That email address has already been registered' });
     }
 
     // Otherwise, create a new user
     const user = new User({ email, password, displayName, avatarURL });
 
-    user.save((err, data) => {
+    user.save((err, user) => {
       if (err) return next(err);
 
-      const { id, email, avatarURL, displayName } = user;
+      const { email, avatarURL, displayName } = user;
 
       // Respond to request with a JWT
       res.json({
         token: tokenForUser(user),
         user: {
-          id,
           email,
           avatarURL,
           displayName
@@ -58,12 +59,11 @@ exports.login = (req, res) => {
   // Passport has put the user specified in the done() callback
   // into the req
 
-  const { id, email, avatarURL, displayName } = req.user;
+  const { email, avatarURL, displayName } = req.user;
 
   res.json({
     token: tokenForUser(req.user),
     user: {
-      id,
       email,
       avatarURL,
       displayName
