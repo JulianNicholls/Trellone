@@ -56,7 +56,7 @@ export const signup = (user, callback) => async dispatch => {
     });
 
     const auth = await response.json();
-    console.log(auth);
+    // console.log(auth);
 
     if (response.status === 422) {
       dispatch({

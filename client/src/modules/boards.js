@@ -27,7 +27,7 @@ export const loadBoards = () => async (dispatch, getState) => {
 
   const boards = await response.json();
 
-  console.log(boards);
+  // console.log(boards);
 
   dispatch({ type: LOAD_BOARDS, boards });
 };
@@ -44,10 +44,24 @@ export const createBoard = board => async (dispatch, getState) => {
     });
 
     const newBoard = await response.json();
-    console.log(newBoard);
+    // console.log(newBoard);
 
-    dispatch({ ADD_BOARD, newBoard });
+    dispatch({ type: ADD_BOARD, newBoard });
   } catch (err) {
     console.error(err);
   }
+};
+
+export const loadBoard = id => async (dispatch, getState) => {
+  const response = await fetch(`http://localhost:3100/boards/${id}`, {
+    headers: {
+      Authorization: getState().auth.token
+    }
+  });
+
+  const board = await response.json();
+
+  console.log(board);
+
+  dispatch({ type: LOAD_BOARD, board });
 };
