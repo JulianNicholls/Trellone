@@ -14,6 +14,14 @@ router.get('/', requireAuth, async (req, res) => {
   res.send(boards);
 });
 
+router.get('/:id', requireAuth, async (req, res) => {
+  const board = await Board.findById(req.params.id);
+
+  //  console.log({ board });
+
+  res.send(board);
+});
+
 router.post('/create', requireAuth, async (req, res) => {
   const { name, backgroundURL } = req.body;
 
