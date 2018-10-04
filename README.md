@@ -18,9 +18,9 @@ A Trello Clone.
   * [x] Create Endpoint for single board
   * [x] Create Endpoint for new board
 * [ ] Create Endpoints for Lists
-  * [ ] Create Endpoint for board lists
-  * [ ] Create Endpoint for single list
-  * [ ] Create Endpoint for new list
+  * [x] Create Endpoint for board lists
+  * [x] Create Endpoint for single list
+  * [x] Create Endpoint for new list
   * [ ] Create Endpoint for remove list
 * [ ] Create Endpoints for Cards
   * [ ] Create Endpoint for list cards
