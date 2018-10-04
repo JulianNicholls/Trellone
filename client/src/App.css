@@ -13,3 +13,7 @@
 .boards {
   margin-top: 2rem;
 }
+
+.rounded {
+  border-radius: 3px;
+}

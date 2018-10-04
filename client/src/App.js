@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 
-import BoardsPage from './pages/Boards';
-import LoginPage from './pages/Login';
-import SignupPage from './pages/Signup';
+import BoardsPage from './pages/BoardsPage';
+import BoardPage from './pages/BoardPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ class App extends Component {
               <Route path="/" exact component={BoardsPage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/signup" component={SignupPage} />
+              <Route path="/board/:id" component={BoardPage} />
             </Switch>
           </div>
         </Fragment>
