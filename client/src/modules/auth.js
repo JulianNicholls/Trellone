@@ -15,7 +15,7 @@ export default (state = {}, action) => {
       return { ...state, error: action.error };
 
     case SET_USER:
-      return { ...state, user: action.user };
+      return { ...state, error: '', user: action.user };
 
     default:
       return state;
@@ -56,7 +56,6 @@ export const signup = (user, callback) => async dispatch => {
     });
 
     const auth = await response.json();
-    // console.log(auth);
 
     if (response.status === 422) {
       dispatch({
