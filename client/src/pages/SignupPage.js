@@ -8,7 +8,8 @@ class SignupPage extends Component {
     displayName: '',
     avatarURL: '',
     email: '',
-    password: ''
+    password: '',
+    localError: ''
   };
 
   updateField = e => {
@@ -20,6 +21,25 @@ class SignupPage extends Component {
   signup = async e => {
     e.preventDefault();
 
+    const { displayName, email, password } = this.state;
+
+    if (!email || !displayName || displayName.length < 6) {
+      this.setState({
+        localError:
+          'You must provide an email address and a display name of at least 6 characters'
+      });
+      return;
+    }
+
+    if (!password || password.length < 6) {
+      this.setState({
+        localError: 'You must provide a password of at least 6 characters'
+      });
+      return;
+    }
+
+    this.setState({ localError: '' });
+
     this.props.signup(this.state, () => {
       this.props.history.push('/');
     });
@@ -27,18 +47,16 @@ class SignupPage extends Component {
 
   render() {
     const { email, password, avatarURL, displayName } = this.state;
-    const { error } = this.props;
+    const { error: remoteError } = this.props;
+    const { localError } = this.state;
+    const error = localError ? localError : remoteError ? remoteError : '';
 
     return (
       <div>
         <h1 className="has-text-centered is-size-3">Signup</h1>
         <div className="columns">
-          <div className="column is-half is-offset-one-quarter auth-form">
-            {error && (
-              <h5 className="error has-background-danger has-text-white">
-                {error}
-              </h5>
-            )}
+          <div className="column is-three-fifths is-offset-one-fifth auth-form">
+            {error && <div className="notification is-danger">{error}</div>}
             <form onSubmit={this.signup}>
               <div className="field">
                 <label className="label" htmlFor="displayName">

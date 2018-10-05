@@ -32,11 +32,7 @@ class LoginPage extends Component {
         <h1 className="has-text-centered is-size-3">Login</h1>
         <div className="columns">
           <div className="column is-half is-offset-one-quarter auth-form">
-            {error && (
-              <h5 className="error has-background-danger has-text-white">
-                {error}
-              </h5>
-            )}
+            {error && <div className="notification is-danger">{error}</div>}
             <form onSubmit={this.loginUser}>
               <div className="field">
                 <label className="label" htmlFor="email">

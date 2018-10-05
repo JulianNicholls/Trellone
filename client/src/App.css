@@ -5,15 +5,16 @@
   padding: 1rem;
 }
 
-.error {
-  margin: 0.5rem 0; 
-  padding: 0.5rem;
-}
-
 .boards {
   margin-top: 2rem;
 }
 
 .rounded {
   border-radius: 3px;
+}
+
+.board-main {
+  background-position: center center;
+  background-size: cover;
+  min-height: 100vh;
 }
