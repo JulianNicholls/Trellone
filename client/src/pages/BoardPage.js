@@ -15,17 +15,25 @@ export class BoardPage extends Component {
   render() {
     const { current } = this.props.boards;
 
-    return (
-      <div>
+    return current ? (
+      <main
+        className="has-background-light board-main"
+        style={{ backgroundImage: `url(${current.backgroundURL})` }}
+      >
         <h1 className="has-text-centered is-size-3">
           {current ? current.name : 'Loading...'}
         </h1>
-      </div>
+      </main>
+    ) : (
+      <h1 className="has-text-centered is-size-3">Loading...</h1>
     );
   }
 }
 
-const mapStateToProps = state => ({ boards: state.boards });
+const mapStateToProps = state => ({ 
+  boards: state.boards,
+  lists: state.lists
+});
 
 export default connect(
   mapStateToProps,
