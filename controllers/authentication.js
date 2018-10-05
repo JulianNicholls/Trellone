@@ -15,9 +15,9 @@ exports.signup = (req, res, next) => {
   const { email, password, displayName, avatarURL } = req.body;
 
   // An email address and password are mandatory
-  if (!email || !password || !displayName) {
+  if (!email || !password || password.length < 6 || !displayName) {
     return res.status(422).send({
-      error: 'You must provide an display name, email address, and password'
+      error: 'You must provide a display name, an email address, and a password of at least 6 characters'
     });
   }
 
