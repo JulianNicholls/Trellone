@@ -6,7 +6,8 @@ import BoardCard from '../components/BoardCard';
 
 class BoardsPage extends Component {
   componentDidMount() {
-    this.props.loadBoards();
+    if (this.props.auth.token) this.props.loadBoards();
+    else this.props.history.replace('/login');
   }
 
   render() {
@@ -27,7 +28,10 @@ class BoardsPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({ boards: state.boards.boards });
+const mapStateToProps = state => ({
+  auth: state.auth,
+  boards: state.boards.boards
+});
 
 export default connect(
   mapStateToProps,
