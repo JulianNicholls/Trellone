@@ -17,13 +17,17 @@ router.get('/', requireAuth, async (req, res) => {
 router.get('/:id', requireAuth, async (req, res) => {
   const board = await Board.findById(req.params.id);
 
-  //  console.log({ board });
-
   res.send(board);
 });
 
 router.post('/create', requireAuth, async (req, res) => {
   const { name, backgroundURL } = req.body;
+
+  if (!req.body.name) {
+    return res.status(422).send({
+      error: 'You must provide a name'
+    });
+  }
 
   const newBoard = new Board({
     name,
