@@ -24,7 +24,7 @@ export default (state = {}, action) => {
 
 export const login = (user, callback) => async dispatch => {
   try {
-    const response = await fetch('http://localhost:3100/login', {
+    const response = await fetch('http://localhost:3100/auth/login', {
       headers: {
         'Content-type': 'application/json'
       },
@@ -47,7 +47,7 @@ export const login = (user, callback) => async dispatch => {
 
 export const signup = (user, callback) => async dispatch => {
   try {
-    const response = await fetch('http://localhost:3100/signup', {
+    const response = await fetch('http://localhost:3100/auth/signup', {
       headers: {
         'Content-type': 'application/json'
       },
