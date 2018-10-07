@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { loadBoards } from '../modules/boards';
+import { loadBoards, createBoard } from '../modules/boards';
 import BoardCard from '../components/BoardCard';
+import NewBoardCard from '../components/NewBoardCard';
 
 class BoardsPage extends Component {
   componentDidMount() {
@@ -10,18 +11,23 @@ class BoardsPage extends Component {
     else this.props.history.replace('/login');
   }
 
+  createBoard = board => {
+    this.props.createBoard(board);
+  };
+
   render() {
     const { boards } = this.props;
 
     return (
       <div>
         <h1 className="has-text-centered is-size-3">Boards</h1>
-        <div className="columns boards">
+        <div className="boards">
           {boards.map(board => (
-            <div key={board._id} className="column is-one-quarter">
+            <div key={board._id}>
               <BoardCard {...board} />
             </div>
           ))}
+          <NewBoardCard onSubmit={this.createBoard} />
         </div>
       </div>
     );
@@ -35,5 +41,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadBoards }
+  { loadBoards, createBoard }
 )(BoardsPage);

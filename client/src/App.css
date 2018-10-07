@@ -1,11 +1,17 @@
-.auth-form {
+.boxed-form {
   border: 1px solid #555;
   border-radius: 3px;
-  margin-top: 2rem;
   padding: 1rem;
 }
 
+.auth-form {
+  margin-top: 2rem;
+}
+
 .boards {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
   margin-top: 2rem;
 }
 

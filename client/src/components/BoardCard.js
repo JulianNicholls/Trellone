@@ -1,15 +1,25 @@
 import React from 'react';
 
-const BoardCard = props => (
+const cardImageStyle = {
+  alignItems: 'center',
+  display: 'flex',
+  height: '170px',
+  justifyContent: 'center',
+  overflow: 'hidden'
+};
+
+const BoardCard = ({ _id, name, backgroundURL }) => (
   <div className="card">
     <header className="card-header">
-      <p className="card-header-title">{props.name}</p>
+      <p className="card-header-title">{name}</p>
     </header>
-    <div className="card-image">
-      <img className="rounded" src={props.backgroundURL} alt="background" />
+    <div className="card-image" style={cardImageStyle}>
+      {backgroundURL && (
+        <img className="rounded" src={backgroundURL} alt="background" />
+      )}
     </div>
     <footer className="card-footer">
-      <a href={`/board/${props._id}`} className="card-footer-item">
+      <a href={`/board/${_id}`} className="card-footer-item">
         Open
       </a>
     </footer>
