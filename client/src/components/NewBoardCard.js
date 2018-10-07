@@ -13,7 +13,7 @@ export class NewBoardCard extends Component {
     this.setState({ [name]: value });
   };
 
-  onSubmit = e => {
+  addBoard = e => {
     e.preventDefault();
 
     if (!this.state.name) {
@@ -37,7 +37,7 @@ export class NewBoardCard extends Component {
           <div className="card-content">
             {error && <div className="notification is-danger">{error}</div>}
 
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.addBoard}>
               <div className="field">
                 <label className="label" htmlFor="name">
                   Name
@@ -71,12 +71,19 @@ export class NewBoardCard extends Component {
                 </div>
               </div>
 
-              <div className="field">
+              {/* <div className="field">
                 <div className="control">
                   <button className="button is-link">Add Board</button>
                 </div>
-              </div>
+              </div> */}
             </form>
+          </div>
+          <div className="card-footer">
+            <div className="card-footer-item">
+              <button className="button" onClick={this.addBoard}>
+                Add Board
+              </button>
+            </div>
           </div>
         </div>
       </div>
