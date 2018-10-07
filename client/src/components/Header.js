@@ -13,7 +13,7 @@ class Header extends React.Component {
   logoutUser = () => this.props.logout();
 
   render() {
-    const { auth } = this.props;
+    const { user } = this.props.auth;
 
     return (
       <nav
@@ -28,9 +28,14 @@ class Header extends React.Component {
         </div>
         <div className="navbar-menu">
           <div className="navbar-end">
-            {auth.user ? (
+            {user ? (
               <React.Fragment>
-                <div className="navbar-item">{auth.user.displayName}</div>
+                {user.avatarURL && (
+                  <div className="navbar-item">
+                    <img src={user.avatarURL} alt="User Avatar" />
+                  </div>
+                )}
+                <div className="navbar-item">{user.displayName}</div>
                 <div className="navbar-item">
                   <button onClick={this.logoutUser} className="button is-link">
                     Log out{' '}
