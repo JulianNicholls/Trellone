@@ -24,18 +24,16 @@ class SignupPage extends Component {
     const { displayName, email, password } = this.state;
 
     if (!email || !displayName || displayName.length < 6) {
-      this.setState({
+      return this.setState({
         localError:
           'You must provide an email address and a display name of at least 6 characters'
       });
-      return;
     }
 
     if (!password || password.length < 6) {
-      this.setState({
+      return this.setState({
         localError: 'You must provide a password of at least 6 characters'
       });
-      return;
     }
 
     this.setState({ localError: '' });

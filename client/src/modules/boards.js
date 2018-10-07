@@ -46,7 +46,7 @@ export const createBoard = board => async (dispatch, getState) => {
     const newBoard = await response.json();
     // console.log(newBoard);
 
-    dispatch({ type: ADD_BOARD, newBoard });
+    dispatch({ type: ADD_BOARD, board: newBoard });
   } catch (err) {
     console.error(err);
   }
@@ -61,7 +61,7 @@ export const loadBoard = id => async (dispatch, getState) => {
 
   const board = await response.json();
 
-  console.log(board);
+  //  console.log(board);
 
   dispatch({ type: LOAD_BOARD, board });
 };
