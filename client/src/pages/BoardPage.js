@@ -6,10 +6,14 @@ import { loadLists } from '../modules/lists';
 
 export class BoardPage extends Component {
   componentDidMount() {
-    const { loadBoard, loadLists, match } = this.props;
+    const { auth, history, loadBoard, loadLists, match } = this.props;
 
-    loadBoard(match.params.id);
-    loadLists(match.params.id);
+    if (auth.token) {
+      loadBoard(match.params.id);
+      loadLists(match.params.id);
+    } else {
+      history.replace('/login');
+    }
   }
 
   render() {
@@ -17,12 +21,14 @@ export class BoardPage extends Component {
 
     return current ? (
       <main
-        className="has-background-light board-main"
-        style={{ backgroundImage: `url(${current.backgroundURL})` }}
+        className="has-background-dark board-main"
+        style={
+          current.backgroundURL
+            ? { backgroundImage: `url(${current.backgroundURL})` }
+            : {}
+        }
       >
-        <h1 className="has-text-centered is-size-3">
-          {current ? current.name : 'Loading...'}
-        </h1>
+        <h1 className="has-text-centered is-size-3">{current.name}</h1>
       </main>
     ) : (
       <h1 className="has-text-centered is-size-3">Loading...</h1>
@@ -30,10 +36,7 @@ export class BoardPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({ 
-  boards: state.boards,
-  lists: state.lists
-});
+const mapStateToProps = state => ({ ...state });
 
 export default connect(
   mapStateToProps,
