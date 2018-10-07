@@ -46,9 +46,11 @@ A Trello Clone.
 * [x] Create Login page
   * [x] Store returned token in Redux store
 * [x] Create Boards page
+  * [x] Redirect to login page if not logged in
   * [x] Show user boards
-  * [ ] Create new board
+  * [x] Create new board
 * [x] Create Board Lists page
+  * [x] Redirect to login page if not logged in
   * [ ] Show board lists
   * [ ] Create new list
   * [ ] Show list cards
