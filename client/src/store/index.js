@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 
 import authReducer from '../modules/auth';
 import boardsReducer from '../modules/boards';
+import listsReducer from '../modules/lists';
 
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
   auth: authReducer,
-  boards: boardsReducer
+  boards: boardsReducer,
+  lists: listsReducer
 });
 
 const token = localStorage.auth;
