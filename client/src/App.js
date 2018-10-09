@@ -16,14 +16,12 @@ class App extends Component {
       <Router>
         <Fragment>
           <Header />
-          <div className="container">
-            <Switch>
-              <Route path="/" exact component={BoardsPage} />
-              <Route path="/login" component={LoginPage} />
-              <Route path="/signup" component={SignupPage} />
-              <Route path="/board/:id" component={BoardPage} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/" exact component={BoardsPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            <Route path="/board/:id" component={BoardPage} />
+          </Switch>
         </Fragment>
       </Router>
     );

@@ -49,12 +49,13 @@ export class BoardPage extends Component {
         <div className="board-main__header">
           <h1 className="has-text-centered is-size-3">{current.name}</h1>
         </div>
-
-        <div className="lists">
-          {lists.map(list => (
-            <ListCard key={list._id} {...list} />
-          ))}
-          <NewListCard onSubmit={this.addList} />
+        <div className="container">
+          <div className="lists">
+            {lists.map(list => (
+              <ListCard key={list._id} {...list} />
+            ))}
+            <NewListCard onSubmit={this.addList} />
+          </div>
         </div>
       </main>
     ) : (

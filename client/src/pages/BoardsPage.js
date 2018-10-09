@@ -19,7 +19,7 @@ class BoardsPage extends Component {
     const { boards } = this.props;
 
     return (
-      <div>
+      <div className="container">
         <h1 className="has-text-centered is-size-3">Boards</h1>
         <div className="boards">
           {boards.map(board => (
