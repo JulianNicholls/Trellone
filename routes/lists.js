@@ -5,9 +5,11 @@ const List = require('../models/List');
 
 // GET all lists for a board.
 router.get('/board/:id', requireAuth, async (req, res) => {
-  const lists = await List.find({ boardId: req.params.id });
+  const lists = await List.find({ boardId: req.params.id }, null, {
+    sort: 'order'
+  });
 
-  console.log(lists);
+  //  console.log({lists});
 
   res.send(lists);
 });
@@ -25,6 +27,12 @@ router.get('/:id', requireAuth, async (req, res) => {
 router.post('/create', requireAuth, async (req, res) => {
   const { name, order, boardId } = req.body;
 
+  if (!req.body.name) {
+    return res.status(422).send({
+      error: 'You must provide a name'
+    });
+  }
+
   const newList = new List({
     name,
     order,
@@ -32,9 +40,9 @@ router.post('/create', requireAuth, async (req, res) => {
     archived: false
   });
 
-  const board = await newList.save();
+  const list = await newList.save();
 
-  res.send(board);
+  res.send(list);
 });
 
 module.exports = router;
