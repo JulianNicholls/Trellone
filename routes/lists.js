@@ -25,7 +25,7 @@ router.get('/:id', requireAuth, async (req, res) => {
 router.post('/create', requireAuth, async (req, res) => {
   const { name, order, boardId } = req.body;
 
-  const newList = new Board({
+  const newList = new List({
     name,
     order,
     boardId
