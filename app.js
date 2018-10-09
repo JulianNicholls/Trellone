@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const logger = require('volleyball');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
@@ -17,7 +17,7 @@ mongoose.set('useCreateIndex', true);
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
