@@ -3,10 +3,16 @@ const jwt = require('jwt-simple');
 const User = require('../models/User');
 const config = require('../config');
 
+// const HOURS25 = (86400 + 3600);
+const HOURS25 = 3;
+
 // Return a JWT for the given user
 function tokenForUser(user) {
-  const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.authSecret);
+  const timestamp = new Date().getTime() / 1000;
+  return jwt.encode(
+    { sub: user.id, iat: timestamp, exp: timestamp + HOURS25 },
+    config.authSecret
+  );
 }
 
 // Sign a user up
@@ -17,7 +23,8 @@ exports.signup = (req, res, next) => {
   // An email address and password are mandatory
   if (!email || !password || password.length < 6 || !displayName) {
     return res.status(422).send({
-      error: 'You must provide a display name, an email address, and a password of at least 6 characters'
+      error:
+        'You must provide a display name, an email address, and a password of at least 6 characters'
     });
   }
 
