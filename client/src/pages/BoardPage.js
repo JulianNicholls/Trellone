@@ -28,7 +28,9 @@ export class BoardPage extends Component {
             : {}
         }
       >
-        <h1 className="has-text-centered is-size-3">{current.name}</h1>
+        <div className="board-main__header">
+          <h1 className="has-text-centered is-size-3">{current.name}</h1>
+        </div>
       </main>
     ) : (
       <h1 className="has-text-centered is-size-3">Loading...</h1>
