@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-export class NewBoardCard extends Component {
+export class NewListCard extends Component {
   state = {
     name: '',
-    backgroundURL: '',
     error: ''
   };
 
@@ -13,31 +12,31 @@ export class NewBoardCard extends Component {
     this.setState({ [name]: value });
   };
 
-  addBoard = e => {
+  addList = e => {
     e.preventDefault();
 
     if (!this.state.name) {
-      return this.setState({ error: 'You must provide a name for the board' });
+      return this.setState({ error: 'You must provide a name for the list' });
     }
 
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.name);
 
-    this.setState({ name: '', backgroundURL: '', error: '' });
+    this.setState({ name: '', error: '' });
   };
 
   render() {
-    const { error, name, backgroundURL } = this.state;
+    const { error, name } = this.state;
 
     return (
       <div>
         <div className="card">
           <div className="card-header">
-            <p className="card-header-title is-centered">New Board</p>
+            <p className="card-header-title is-centered">New List</p>
           </div>
           <div className="card-content">
             {error && <div className="notification is-danger">{error}</div>}
 
-            <form onSubmit={this.addBoard}>
+            <form onSubmit={this.addList}>
               <div className="field">
                 <label className="label" htmlFor="name">
                   Name
@@ -54,28 +53,12 @@ export class NewBoardCard extends Component {
                   />
                 </div>
               </div>
-
-              <div className="field">
-                <label className="label" htmlFor="backgroundURL">
-                  Background URL
-                </label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="text"
-                    id="backgroundURL"
-                    name="backgroundURL"
-                    value={backgroundURL}
-                    onChange={this.updateField}
-                  />
-                </div>
-              </div>
             </form>
           </div>
           <div className="card-footer">
             <div className="card-footer-item">
-              <button className="button" onClick={this.addBoard}>
-                Add Board
+              <button className="button" onClick={this.addList}>
+                Add List
               </button>
             </div>
           </div>
@@ -85,4 +68,4 @@ export class NewBoardCard extends Component {
   }
 }
 
-export default NewBoardCard;
+export default NewListCard;

@@ -27,7 +27,7 @@ export const loadLists = id => async (dispatch, getState) => {
 
   const lists = await response.json();
 
-  console.log(lists);
+  console.log({ lists });
 
   dispatch({ type: LOAD_LISTS, lists });
 };
@@ -46,9 +46,9 @@ export const createList = list => async (dispatch, getState) => {
     if (response.status === 401) return dispatch(logout());
 
     const newList = await response.json();
-    console.log(newList);
+    console.log({ newList });
 
-    dispatch({ type: ADD_LIST, newList });
+    dispatch({ type: ADD_LIST, list: newList });
   } catch (err) {
     console.error(err);
   }
