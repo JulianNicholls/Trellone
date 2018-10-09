@@ -1,11 +1,8 @@
 const router = require('express').Router();
-const passport = require('passport');
 
-require('../services/passport');
+const { requireAuth } = require('../services/passport');
 
-const requireAuth = passport.authenticate('jwt', { session: false });
-
-/* GET current user info */
+// GET current user info
 router.get('/current', requireAuth, (req, res) => {
   const { displayName, email, avatarURL } = req.user;
   res.json({ displayName, email, avatarURL });
