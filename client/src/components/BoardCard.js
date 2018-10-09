@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const cardImageStyle = {
   alignItems: 'center',
@@ -19,9 +20,9 @@ const BoardCard = ({ _id, name, backgroundURL }) => (
       )}
     </div>
     <footer className="card-footer">
-      <a href={`/board/${_id}`} className="card-footer-item">
+      <Link to={`/board/${_id}`} className="card-footer-item">
         Open
-      </a>
+      </Link>
     </footer>
   </div>
 );

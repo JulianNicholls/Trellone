@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { loadUser, logout } from '../modules/auth';
 
@@ -22,9 +23,9 @@ class Header extends React.Component {
         aria-label="main navigation"
       >
         <div className="navbar-brand">
-          <a href="/" className="navbar-item">
+          <Link to="/" className="navbar-item">
             Trellone
-          </a>
+          </Link>
         </div>
         <div className="navbar-menu">
           <div className="navbar-end">
@@ -45,13 +46,13 @@ class Header extends React.Component {
             ) : (
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className="button is-link" href="/login">
+                  <Link to="/login" className="button is-link">
                     Log in
-                  </a>
+                  </Link>
 
-                  <a className="button is-link" href="/signup">
+                  <Link to="/signup" className="button is-link">
                     Sign up
-                  </a>
+                  </Link>
                 </div>
               </div>
             )}
