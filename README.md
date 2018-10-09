@@ -40,7 +40,7 @@ A Trello Clone.
   * [ ] Set up ducks for lists
   * [ ] Set up ducks for cards
 * [x] Create Header with Signup and Login buttons
-  * [ ] Display name and avatar when logged in
+  * [x] Display name and avatar when logged in
 * [x] Create Signup page
   * [x] Store returned token in Redux store
 * [x] Create Login page
