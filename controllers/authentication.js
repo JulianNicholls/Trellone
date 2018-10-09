@@ -3,8 +3,7 @@ const jwt = require('jwt-simple');
 const User = require('../models/User');
 const config = require('../config');
 
-// const HOURS25 = (86400 + 3600);
-const HOURS25 = 3;
+const HOURS25 = 86400 + 3600;
 
 // Return a JWT for the given user
 function tokenForUser(user) {
