@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { loadUser, logout } from '../modules/auth';
 
@@ -11,7 +11,12 @@ class Header extends React.Component {
     }
   }
 
-  logoutUser = () => this.props.logout();
+  logoutUser = () => {
+    const { logout, history } = this.props;
+
+    logout();
+    history.replace('/login');
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -65,7 +70,9 @@ class Header extends React.Component {
 
 const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(
-  mapStateToProps,
-  { loadUser, logout }
-)(Header);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { loadUser, logout }
+  )(Header)
+);
