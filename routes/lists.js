@@ -28,7 +28,8 @@ router.post('/create', requireAuth, async (req, res) => {
   const newList = new List({
     name,
     order,
-    boardId
+    boardId,
+    archived: false
   });
 
   const board = await newList.save();
