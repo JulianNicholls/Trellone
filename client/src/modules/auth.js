@@ -90,7 +90,11 @@ export const loadUser = () => async (dispatch, getState) => {
     }
   });
 
-  const user = await response.json();
+  if (response.status !== 401) {
+    const user = await response.json();
 
-  dispatch({ type: SET_USER, user });
+    dispatch({ type: SET_USER, user });
+  } else {
+    dispatch(logout());
+  }
 };

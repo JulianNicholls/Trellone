@@ -1,3 +1,5 @@
+import { logout } from './auth';
+
 const LOAD_BOARDS = 'boards/LOAD_BOARDS';
 const ADD_BOARD = 'boards/ADD_BOARD';
 const LOAD_BOARD = 'boards/LOAD_BOARD';
@@ -25,6 +27,8 @@ export const loadBoards = () => async (dispatch, getState) => {
     }
   });
 
+  if (response.status === 401) return dispatch(logout());
+
   const boards = await response.json();
 
   // console.log(boards);
@@ -43,6 +47,8 @@ export const createBoard = board => async (dispatch, getState) => {
       body: JSON.stringify(board)
     });
 
+    if (response.status === 401) return dispatch(logout());
+
     const newBoard = await response.json();
     // console.log(newBoard);
 
@@ -58,6 +64,8 @@ export const loadBoard = id => async (dispatch, getState) => {
       Authorization: getState().auth.token
     }
   });
+
+  if (response.status === 401) return dispatch(logout());
 
   const board = await response.json();
 

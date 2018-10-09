@@ -1,3 +1,5 @@
+import { logout } from './auth';
+
 const LOAD_LISTS = 'boards/LOAD_LISTS';
 const ADD_LIST = 'boards/ADD_LIST';
 
@@ -21,6 +23,8 @@ export const loadLists = id => async (dispatch, getState) => {
     }
   });
 
+  if (response.status === 401) return dispatch(logout());
+
   const lists = await response.json();
 
   console.log(lists);
@@ -38,6 +42,8 @@ export const createList = list => async (dispatch, getState) => {
       method: 'POST',
       body: JSON.stringify(list)
     });
+
+    if (response.status === 401) return dispatch(logout());
 
     const newList = await response.json();
     console.log(newList);
