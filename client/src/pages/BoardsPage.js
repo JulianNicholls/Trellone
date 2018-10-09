@@ -7,8 +7,10 @@ import NewBoardCard from '../components/NewBoardCard';
 
 class BoardsPage extends Component {
   componentDidMount() {
-    if (this.props.auth.token) this.props.loadBoards();
-    else this.props.history.replace('/login');
+    const { auth, loadBoards, history } = this.props;
+
+    if (auth.token) loadBoards();
+    else history.replace('/login');
   }
 
   createBoard = board => {

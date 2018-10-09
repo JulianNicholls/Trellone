@@ -47,7 +47,9 @@ export class BoardPage extends Component {
         }
       >
         <div className="board-main__header">
-          <h1 className="has-text-centered is-size-3">{current.name}</h1>
+          <h1 className="has-text-centered is-size-3 has-text-light">
+            {current.name}
+          </h1>
         </div>
         <div className="container">
           <div className="lists">
