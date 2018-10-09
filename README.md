@@ -13,7 +13,7 @@ A Trello Clone.
   * [x] Create model for cards
 * [x] Create Endpoints for Login and Signup
 * [x] Create Endpoint for current user
-* [ ] Create Endpoints for Boards
+* [x] Create Endpoints for Boards
   * [x] Create Endpoint for user boards 
   * [x] Create Endpoint for single board
   * [x] Create Endpoint for new board
@@ -37,7 +37,7 @@ A Trello Clone.
 * [x] Set up Redux store
   * [x] Set up ducks for auth
   * [x] Set up ducks for boards
-  * [ ] Set up ducks for lists
+  * [x] Set up ducks for lists
   * [ ] Set up ducks for cards
 * [x] Create Header with Signup and Login buttons
   * [x] Display name and avatar when logged in
@@ -51,7 +51,7 @@ A Trello Clone.
   * [x] Create new board
 * [x] Create Board Lists page
   * [x] Redirect to login page if not logged in
-  * [ ] Show board lists
-  * [ ] Create new list
+  * [x] Show board lists
+  * [x] Create new list
   * [ ] Show list cards
   * [ ] Create new card
