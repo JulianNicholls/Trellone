@@ -19,7 +19,7 @@ export default (state = [], action) => {
 
 export const loadLists = id => async (dispatch, getState) => {
   try {
-    const response = await axios.get(`http://localhost:3100/lists/board/${id}`, {
+    const response = await axios.get(`/api/lists/board/${id}`, {
       headers: {
         Authorization: getState().auth.token
       }
@@ -36,15 +36,11 @@ export const loadLists = id => async (dispatch, getState) => {
 
 export const createList = list => async (dispatch, getState) => {
   try {
-    const response = await axios.post(
-      'http://localhost:3100/lists/create',
-      list,
-      {
-        headers: {
-          Authorization: getState().auth.token
-        }
+    const response = await axios.post('/api/lists/create', list, {
+      headers: {
+        Authorization: getState().auth.token
       }
-    );
+    });
 
     //  console.log({ data: response.data });
 

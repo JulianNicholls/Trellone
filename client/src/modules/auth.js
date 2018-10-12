@@ -26,7 +26,7 @@ export default (state = {}, action) => {
 
 export const login = (user, callback) => async dispatch => {
   try {
-    const auth = await axios.post('http://localhost:3100/auth/login', user);
+    const auth = await axios.post('/auth/login', user);
 
     dispatch({ type: LOGIN, auth: auth.data });
     localStorage.auth = auth.data.token;
@@ -41,7 +41,7 @@ export const login = (user, callback) => async dispatch => {
 
 export const signup = (user, callback) => async dispatch => {
   try {
-    const auth = await axios.post('http://localhost:3100/auth/signup', user);
+    const auth = await axios.post('/auth/signup', user);
 
     dispatch({ type: LOGIN, auth: auth.data });
     localStorage.auth = auth.data.token;
@@ -64,7 +64,7 @@ export const logout = () => {
 
 export const loadUser = () => async (dispatch, getState) => {
   try {
-    const auth = await axios.get('http://localhost:3100/users/current', {
+    const auth = await axios.get('/api/users/current', {
       headers: {
         Authorization: getState().auth.token
       }

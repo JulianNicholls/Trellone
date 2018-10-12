@@ -24,7 +24,7 @@ export default (state = { boards: [], current: null }, action) => {
 
 export const loadBoards = () => async (dispatch, getState) => {
   try {
-    const boards = await axios.get('http://localhost:3100/boards', {
+    const boards = await axios.get('/api/boards', {
       headers: {
         Authorization: getState().auth.token
       }
@@ -40,15 +40,11 @@ export const loadBoards = () => async (dispatch, getState) => {
 
 export const createBoard = board => async (dispatch, getState) => {
   try {
-    const response = await axios.post(
-      'http://localhost:3100/boards/create',
-      board,
-      {
-        headers: {
-          Authorization: getState().auth.token
-        }
+    const response = await axios.post('/api/boards/create', board, {
+      headers: {
+        Authorization: getState().auth.token
       }
-    );
+    });
 
     dispatch({ type: ADD_BOARD, board: response.data });
   } catch (error) {
@@ -59,7 +55,7 @@ export const createBoard = board => async (dispatch, getState) => {
 
 export const loadBoard = id => async (dispatch, getState) => {
   try {
-    const response = await axios.get(`http://localhost:3100/boards/${id}`, {
+    const response = await axios.get(`/api/boards/${id}`, {
       headers: {
         Authorization: getState().auth.token
       }
