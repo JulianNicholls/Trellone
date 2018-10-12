@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { logout } from './auth';
 
 const LOAD_BOARDS = 'boards/LOAD_BOARDS';
@@ -21,55 +23,52 @@ export default (state = { boards: [], current: null }, action) => {
 };
 
 export const loadBoards = () => async (dispatch, getState) => {
-  const response = await fetch('http://localhost:3100/boards', {
-    headers: {
-      Authorization: getState().auth.token
-    }
-  });
+  try {
+    const boards = await axios.get('http://localhost:3100/boards', {
+      headers: {
+        Authorization: getState().auth.token
+      }
+    });
 
-  if (response.status === 401) return dispatch(logout());
+    // console.log(boards);
 
-  const boards = await response.json();
-
-  // console.log(boards);
-
-  dispatch({ type: LOAD_BOARDS, boards });
+    dispatch({ type: LOAD_BOARDS, boards: boards.data });
+  } catch (error) {
+    dispatch(logout());
+  }
 };
 
 export const createBoard = board => async (dispatch, getState) => {
   try {
-    const response = await fetch('http://localhost:3100/boards/create', {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: getState().auth.token
-      },
-      method: 'POST',
-      body: JSON.stringify(board)
-    });
+    const response = await axios.post(
+      'http://localhost:3100/boards/create',
+      board,
+      {
+        headers: {
+          Authorization: getState().auth.token
+        }
+      }
+    );
 
-    if (response.status === 401) return dispatch(logout());
-
-    const newBoard = await response.json();
-    // console.log(newBoard);
-
-    dispatch({ type: ADD_BOARD, board: newBoard });
-  } catch (err) {
-    console.error(err);
+    dispatch({ type: ADD_BOARD, board: response.data });
+  } catch (error) {
+    console.error(error);
+    dispatch(logout());
   }
 };
 
 export const loadBoard = id => async (dispatch, getState) => {
-  const response = await fetch(`http://localhost:3100/boards/${id}`, {
-    headers: {
-      Authorization: getState().auth.token
-    }
-  });
+  try {
+    const response = await axios.get(`http://localhost:3100/boards/${id}`, {
+      headers: {
+        Authorization: getState().auth.token
+      }
+    });
 
-  if (response.status === 401) return dispatch(logout());
+    //  console.log(response);
 
-  const board = await response.json();
-
-  //  console.log(board);
-
-  dispatch({ type: LOAD_BOARD, board });
+    dispatch({ type: LOAD_BOARD, board: response.data });
+  } catch (error) {
+    dispatch(logout());
+  }
 };
