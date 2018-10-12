@@ -39,7 +39,7 @@ export class BoardPage extends Component {
 
     return current ? (
       <main
-        className="has-background-dark board-main"
+        className="has-background-light board-main"
         style={
           current.backgroundURL
             ? { backgroundImage: `url(${current.backgroundURL})` }
