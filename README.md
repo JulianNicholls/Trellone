@@ -4,13 +4,13 @@ A Trello Clone.
 
 ## Back End
 
-* [x] Install Express, Morgan, CORS and make basic server
+* [x] Install Express, Volleyball, CORS and make basic server
 * [x] Install Passport, Bcrypt and Mongoose for authentication
 * [x] Create Mongoose models
   * [x] Create model for users
   * [x] Create model for boards
   * [x] Create model for lists
-  * [x] Create model for cards
+  * [x] Create model for tasks
 * [x] Create Endpoints for Login and Signup
 * [x] Create Endpoint for current user
 * [x] Create Endpoints for Boards
@@ -21,11 +21,11 @@ A Trello Clone.
   * [x] Create Endpoint for board lists
   * [x] Create Endpoint for single list
   * [x] Create Endpoint for new list
-  * [ ] Create Endpoint for remove list
-* [ ] Create Endpoints for Cards
-  * [ ] Create Endpoint for list cards
-  * [ ] Create Endpoint for single card
-  * [ ] Create Endpoint for new card
+  * [ ] Create Endpoint for archive list
+* [ ] Create Endpoints for tasks
+  * [ ] Create Endpoint for list tasks
+  * [ ] Create Endpoint for single task
+  * [ ] Create Endpoint for new task
   * [ ] Create Endpoint for archive list
 
 ## Front End
@@ -38,7 +38,7 @@ A Trello Clone.
   * [x] Set up ducks for auth
   * [x] Set up ducks for boards
   * [x] Set up ducks for lists
-  * [ ] Set up ducks for cards
+  * [ ] Set up ducks for tasks
 * [x] Create Header with Signup and Login buttons
   * [x] Display name and avatar when logged in
 * [x] Create Signup page
@@ -53,5 +53,5 @@ A Trello Clone.
   * [x] Redirect to login page if not logged in
   * [x] Show board lists
   * [x] Create new list
-  * [ ] Show list cards
-  * [ ] Create new card
+  * [ ] Show list tasks
+  * [ ] Create new task
