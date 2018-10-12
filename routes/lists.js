@@ -5,9 +5,13 @@ const List = require('../models/List');
 
 // GET all lists for a board.
 router.get('/board/:id', requireAuth, async (req, res) => {
-  const lists = await List.find({ boardId: req.params.id }, null, {
-    sort: 'order'
-  });
+  const lists = await List.find(
+    { boardId: req.params.id, archived: false },
+    null,
+    {
+      sort: 'order'
+    }
+  );
 
   //  console.log({lists});
 
@@ -43,6 +47,18 @@ router.post('/create', requireAuth, async (req, res) => {
   const list = await newList.save();
 
   res.send(list);
+});
+
+// Get a particular list (am I going to need this?)
+router.post('/:id/archive', requireAuth, async (req, res) => {
+  const response = await List.updateOne(
+    { _id: req.params.id },
+    { $set: { archived: true } }
+  );
+
+  console.log({ response });
+
+  res.send(response);
 });
 
 module.exports = router;

@@ -7,6 +7,7 @@ const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const boardsRouter = require('./routes/boards');
 const listsRouter = require('./routes/lists');
+const tasksRouter = require('./routes/tasks');
 
 mongoose.connect(
   'mongodb://localhost/trellone',
@@ -25,5 +26,6 @@ app.use('/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 app.use('/api/lists', listsRouter);
+app.use('/api/tasks', tasksRouter);
 
 module.exports = app;
