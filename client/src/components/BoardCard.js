@@ -15,9 +15,11 @@ const BoardCard = ({ _id, name, backgroundURL }) => (
       <p className="card-header-title">{name}</p>
     </header>
     <div className="card-image" style={cardImageStyle}>
-      {backgroundURL && (
-        <img className="rounded" src={backgroundURL} alt="background" />
-      )}
+      <Link to={`/board/${_id}`}>
+        {backgroundURL && (
+          <img className="rounded" src={backgroundURL} alt="background" />
+        )}
+      </Link>
     </div>
     <footer className="card-footer">
       <Link to={`/board/${_id}`} className="card-footer-item">

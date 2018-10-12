@@ -28,8 +28,8 @@ class Header extends React.Component {
         aria-label="main navigation"
       >
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item">
-            Trellone
+          <Link to="/" className="navbar-item is-size-4">
+            <strong>Trellone</strong>
           </Link>
         </div>
         <div className="navbar-menu">
