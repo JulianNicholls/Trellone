@@ -7,6 +7,7 @@
     "dev": "nodemon ./bin/www --ignore client/"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
