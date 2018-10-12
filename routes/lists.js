@@ -8,9 +8,7 @@ router.get('/board/:id', requireAuth, async (req, res) => {
   const lists = await List.find(
     { boardId: req.params.id, archived: false },
     null,
-    {
-      sort: 'order'
-    }
+    { sort: 'order' }
   );
 
   //  console.log({lists});
@@ -49,7 +47,7 @@ router.post('/create', requireAuth, async (req, res) => {
   res.send(list);
 });
 
-// Get a particular list (am I going to need this?)
+// Archive a list
 router.post('/:id/archive', requireAuth, async (req, res) => {
   const response = await List.updateOne(
     { _id: req.params.id },
