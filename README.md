@@ -1,6 +1,6 @@
 # Trellone
 
-A Trello Clone.
+A Trello Clone written with the MERN stack.
 
 ## Back End
 
@@ -17,16 +17,16 @@ A Trello Clone.
   * [x] Create Endpoint for user boards 
   * [x] Create Endpoint for single board
   * [x] Create Endpoint for new board
-* [ ] Create Endpoints for Lists
+* [x] Create Endpoints for Lists
   * [x] Create Endpoint for board lists
   * [x] Create Endpoint for single list
   * [x] Create Endpoint for new list
-  * [ ] Create Endpoint for archive list
-* [ ] Create Endpoints for tasks
-  * [ ] Create Endpoint for list tasks
-  * [ ] Create Endpoint for single task
-  * [ ] Create Endpoint for new task
-  * [ ] Create Endpoint for archive list
+  * [x] Create Endpoint for archive list
+* [x] Create Endpoints for Tasks
+  * [x] Create Endpoint for list tasks
+  * [x] Create Endpoint for single task
+  * [x] Create Endpoint for new task
+  * [x] Create Endpoint for archive task
 
 ## Front End
 
@@ -55,3 +55,7 @@ A Trello Clone.
   * [x] Create new list
   * [ ] Show list tasks
   * [ ] Create new task
+
+  ## ER Diagram
+
+  ![ER Diagram](Trellone-ER-Diagram.png)
