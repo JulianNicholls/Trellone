@@ -6,6 +6,7 @@ const cardImageStyle = {
   display: 'flex',
   height: '170px',
   justifyContent: 'center',
+  objectFit: 'cover',
   overflow: 'hidden'
 };
 

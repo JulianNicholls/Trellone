@@ -32,6 +32,7 @@ export const loadBoards = () => async (dispatch, getState) => {
 
     dispatch({ type: LOAD_BOARDS, boards: boards.data });
   } catch (error) {
+    console.error({ error });
     dispatch(logout());
   }
 };
@@ -44,7 +45,7 @@ export const createBoard = board => async (dispatch, getState) => {
 
     dispatch({ type: ADD_BOARD, board: response.data });
   } catch (error) {
-    console.error(error);
+    console.error({ error });
     dispatch(logout());
   }
 };
@@ -55,10 +56,9 @@ export const loadBoard = id => async (dispatch, getState) => {
       headers: { Authorization: getState().auth.token }
     });
 
-    //  console.log(response);
-
     dispatch({ type: LOAD_BOARD, board: response.data });
   } catch (error) {
+    console.error({ error });
     dispatch(logout());
   }
 };

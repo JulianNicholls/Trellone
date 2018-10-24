@@ -40,3 +40,14 @@ nav img {
     grid-template-columns: repeat(3, 1fr);
     margin-top: 2rem;
 }
+
+.task {
+  /* background: #d1d8fa; */
+  border-bottom: 0.5px solid #eeeeee;
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+}
+
+.task:last-of-type {
+  margin-bottom: 1em;
+}

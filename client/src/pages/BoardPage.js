@@ -19,15 +19,12 @@ export class BoardPage extends Component {
   }
 
   addList = name => {
+    const { boards, lists } = this.props;
+
     const newList = {
       name,
-      boardId: this.props.boards.current._id,
-      order:
-        this.props.lists.reduce((max, list) => {
-          if (list.order > max) max = list.order;
-
-          return max;
-        }, 0) + 1
+      boardId: boards.current._id,
+      order: Math.max(lists.map(({ order }) => order)) + 1
     };
 
     this.props.createList(newList);
