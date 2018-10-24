@@ -2,8 +2,9 @@ const router = require('express').Router();
 
 const { requireAuth } = require('../services/passport');
 const List = require('../models/List');
+const Task = require('../models/Task');
 
-// GET all lists for a board.
+// GET all lists and their tasks for a board.
 router.get('/board/:id', requireAuth, async (req, res) => {
   const lists = await List.find(
     { boardId: req.params.id, archived: false },
@@ -11,16 +12,28 @@ router.get('/board/:id', requireAuth, async (req, res) => {
     { sort: 'order' }
   );
 
-  //  console.log({lists});
+  const tasks = await Task.find({
+    listId: { $in: lists.map(list => list._id) },
+    archived: false
+  });
 
-  res.send(lists);
+  const withTasks = lists.map(list => ({
+    _id: list._id,
+    name: list.name,
+    order: list.order,
+    boardId: list.boardId,
+    archived: list.archived,
+    tasks: tasks.filter(({ listId }) => listId.equals(list._id))
+  }));
+
+  res.send(withTasks);
 });
 
 // Get a particular list (am I going to need this?)
 router.get('/:id', requireAuth, async (req, res) => {
   const list = await List.findById(req.params.id);
 
-  console.log({ list });
+  // console.log({ list });
 
   res.send(list);
 });
@@ -54,7 +67,7 @@ router.post('/:id/archive', requireAuth, async (req, res) => {
     { $set: { archived: true } }
   );
 
-  console.log({ response });
+  // console.log({ response });
 
   res.send(response);
 });
