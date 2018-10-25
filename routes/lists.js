@@ -2,7 +2,6 @@ const router = require('express').Router();
 
 const { requireAuth } = require('../services/passport');
 const List = require('../models/List');
-const Task = require('../models/Task');
 
 // GET all lists and their tasks for a board.
 router.get('/board/:id', requireAuth, async (req, res) => {
@@ -12,21 +11,7 @@ router.get('/board/:id', requireAuth, async (req, res) => {
     { sort: 'order' }
   );
 
-  const tasks = await Task.find({
-    listId: { $in: lists.map(list => list._id) },
-    archived: false
-  });
-
-  const withTasks = lists.map(list => ({
-    _id: list._id,
-    name: list.name,
-    order: list.order,
-    boardId: list.boardId,
-    archived: list.archived,
-    tasks: tasks.filter(({ listId }) => listId.equals(list._id))
-  }));
-
-  res.send(withTasks);
+  res.send(lists);
 });
 
 // Get a particular list (am I going to need this?)
@@ -42,9 +27,9 @@ router.get('/:id', requireAuth, async (req, res) => {
 router.post('/create', requireAuth, async (req, res) => {
   const { name, order, boardId } = req.body;
 
-  if (!req.body.name) {
+  if (!name || isNaN(order) || !boardId) {
     return res.status(422).send({
-      error: 'You must provide a name'
+      error: 'You must provide a name, order, and board ID'
     });
   }
 
@@ -58,6 +43,29 @@ router.post('/create', requireAuth, async (req, res) => {
   const list = await newList.save();
 
   res.send(list);
+});
+
+router.post('/createTask/:id', requireAuth, async (req, res) => {
+  const { text, order } = req.body;
+
+  if (!text || isNaN(order)) {
+    return res.status(422).send({
+      error: 'You must provide a task text and an order'
+    });
+  }
+
+  const newTask = {
+    text,
+    order,
+    archived: false
+  };
+
+  const response = await List.updateOne(
+    { _id: req.params.id },
+    { $push: { tasks: newTask } }
+  );
+
+  res.send(response);
 });
 
 // Archive a list
