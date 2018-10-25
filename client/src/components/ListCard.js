@@ -10,11 +10,10 @@ class ListCard extends React.Component {
 
     const newTask = {
       text,
-      listId: _id,
       order: Math.max(tasks.map(({ order }) => order)) + 1
     };
 
-    this.props.addTask(newTask);
+    this.props.addTask(_id, newTask);
   };
 
   render() {

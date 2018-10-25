@@ -8,8 +8,6 @@ const ADD_TASK = 'lists/ADD_TASK';
 const REMOVE_TASK = 'lists/REMOVE_TASK';
 
 export default (state = [], action) => {
-  let lists, updateIndex;
-
   switch (action.type) {
     case LOAD_LISTS:
       return action.lists;
@@ -21,10 +19,11 @@ export default (state = [], action) => {
       return state.filter(({ _id }) => _id !== action.id);
 
     case ADD_TASK:
-      lists = [...state];
-      updateIndex = lists.findIndex(({ _id }) => _id === action.task.listId);
+      console.log({ action });
+      const lists = [...state];
+      const updateList = lists.find(({ _id }) => _id === action.listId);
 
-      lists[updateIndex].tasks.push(action.task);
+      updateList.tasks.push(action.task);
 
       return lists;
 
@@ -75,13 +74,14 @@ export const archiveList = id => async (dispatch, getState) => {
   }
 };
 
-export const addTask = task => async (dispatch, getState) => {
+export const addTask = (listId, task) => async (dispatch, getState) => {
   try {
-    await axios.post('/api/tasks/create', task, {
+    const response = await axios.post(`/api/lists/createTask/${listId}`, task, {
       headers: { Authorization: getState().auth.token }
     });
 
-    dispatch({ type: ADD_TASK, task });
+    console.log({ response, task });
+    if (response.data.nModified === 1) dispatch({ type: ADD_TASK, task, listId });
   } catch (error) {
     console.error({ error });
     dispatch(logout());
