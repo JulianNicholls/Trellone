@@ -24,11 +24,11 @@ class Header extends React.Component {
     if (!user) {
       return (
         <div className="buttons">
-          <Link to="/login" className="button is-link">
+          <Link to="/login" className="button">
             Log in
           </Link>
 
-          <Link to="/signup" className="button is-link">
+          <Link to="/signup" className="button">
             Sign up
           </Link>
         </div>
@@ -40,7 +40,7 @@ class Header extends React.Component {
         {user.avatarURL && <img src={user.avatarURL} alt="User Avatar" />}
         <div className="navbar-item">{user.displayName}</div>
         <div className="navbar-item">
-          <button onClick={this.logoutUser} className="button is-link">
+          <button onClick={this.logoutUser} className="button">
             Log out
           </button>
         </div>

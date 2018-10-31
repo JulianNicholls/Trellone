@@ -19,7 +19,7 @@
 
 body {
   background: var(--bg-prime);
-  color: var(--fg-prime);
+  color: white;
   font-family: 'Raleway', sans-serif;
   margin: 0;
   padding: 0;
@@ -44,7 +44,26 @@ label {
   margin-bottom: 0.25em;
 }
 
+input {
+  padding: 0.2em;
+}
 
+button, .button {
+  background: var(--bg-prime-light);
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  padding: 0.3em 0.6em;
+}
+
+.button-small {
+  font-size: 0.8rem;
+}
+
+.button-large {
+  font-size: 1.2rem;
+}
 
 /* Bulma class replacements */
 
@@ -78,7 +97,7 @@ nav {
   align-items: center;
   color: var(--fg-alt1);
   display: flex;
-  height: 2.5rem;
+  height: 2.7rem;
 }
 
 nav a {
@@ -113,29 +132,38 @@ nav img {
 
 .card {
   border: 1px solid var(--bg-prime-dark);
-  color: var(--fg-alt1);
+  color: white;
 }
 
-.card header, .card footer {
+.card header {
   background: var(--bg-prime-dark);
+  font-weight: bold;
   height: 2rem;
   padding-top: 0.3rem;
 }
 
-.card header {
-  font-weight: bold;
+header.with-button {
+  display: flex;
+  height: 2.5rem;
+  justify-content: space-between;
+  padding: 0.3rem 0 0.3rem 1rem !important;
 }
 
 .card footer {
-  padding: 0.3rem 0 0 1rem;;
+  background: var(--bg-prime-dark);
+  padding: 0.3rem 0 0.3rem 1rem !important;
 }
 
 .card img {
+  background: var(--bg-prime-light);
   width: 100%;
 }
 
 .card-content {
   background: var(--bg-prime-light);
+}
+
+.card-content form {
   padding: 0.5rem;
 }
 
@@ -146,7 +174,10 @@ nav img {
 }
 
 .auth-form {
-  margin-top: 2rem;
+  background: var(--fg-alt1);
+  color: var(--bg-prime);
+  margin: 2rem auto;
+  width: 30rem;
 }
 
 .rounded {

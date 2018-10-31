@@ -26,7 +26,7 @@ class SignupPage extends Component {
     if (!email || !displayName || displayName.length < 6) {
       return this.setState({
         localError:
-          'You must provide an email address and a display name of at least 6 characters'
+          'You must provide an email address, and a display name of at least 6 characters'
       });
     }
 
@@ -52,8 +52,8 @@ class SignupPage extends Component {
     return (
       <div>
         <h1 className="has-text-centered is-size-3">Signup</h1>
-        <div className="columns">
-          <div className="column is-three-fifths is-offset-one-fifth auth-form">
+        <div className="container">
+          <div className="boxed-form auth-form">
             {error && <div className="notification is-danger">{error}</div>}
             <form onSubmit={this.signup}>
               <div className="field">
@@ -122,7 +122,7 @@ class SignupPage extends Component {
               </div>
               <div className="field">
                 <div className="control">
-                  <button className="button is-link">Sign up</button>
+                  <button className="button-large">Sign up</button>
                 </div>
               </div>
             </form>

@@ -71,9 +71,7 @@ export class NewBoardCard extends Component {
             </form>
           </div>
           <footer>
-            <button className="button" onClick={this.addBoard}>
-              Add Board
-            </button>
+            <button onClick={this.addBoard}>Add Board</button>
           </footer>
         </div>
       </div>

@@ -30,9 +30,7 @@ export class NewListCard extends Component {
     return (
       <div>
         <div className="card">
-          <div className="card-header">
-            <p className="card-header-title is-centered">New List</p>
-          </div>
+          <header className="has-text-centered">New List</header>
           <div className="card-content">
             {error && <div className="notification is-danger">{error}</div>}
 
@@ -55,13 +53,11 @@ export class NewListCard extends Component {
               </div>
             </form>
           </div>
-          <div className="card-footer">
-            <div className="card-footer-item">
-              <button className="button" onClick={this.addList}>
-                Add List
-              </button>
-            </div>
-          </div>
+          <footer>
+            <button className="button" onClick={this.addList}>
+              Add List
+            </button>
+          </footer>
         </div>
       </div>
     );

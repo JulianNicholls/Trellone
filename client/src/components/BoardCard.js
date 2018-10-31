@@ -13,12 +13,14 @@ const cardImageStyle = {
 const BoardCard = ({ _id, name, backgroundURL }) => (
   <div className="card">
     <header className="card-header">{name}</header>
-    <div className="card-image" style={cardImageStyle}>
-      <Link to={`/board/${_id}`}>
-        {backgroundURL && (
-          <img className="rounded" src={backgroundURL} alt="background" />
-        )}
-      </Link>
+    <div className="card-content">
+      <div className="card-image" style={cardImageStyle}>
+        <Link to={`/board/${_id}`}>
+          {backgroundURL && (
+            <img className="rounded" src={backgroundURL} alt="background" />
+          )}
+        </Link>
+      </div>
     </div>
     <footer>
       <Link to={`/board/${_id}`} className="card-footer-item">

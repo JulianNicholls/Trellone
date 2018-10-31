@@ -21,9 +21,12 @@ class ListCard extends React.Component {
 
     return (
       <div className="card">
-        <header className="card-header">
-          <p className="card-header-title">{name}</p>
-          <button className="button is-warning" onClick={() => archiveList(_id)}>
+        <header className="card-header with-button">
+          {name}
+          <button
+            className="button button-small"
+            onClick={() => archiveList(_id)}
+          >
             Archive
           </button>
         </header>

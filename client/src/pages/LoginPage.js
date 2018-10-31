@@ -30,8 +30,8 @@ class LoginPage extends Component {
     return (
       <div>
         <h1 className="has-text-centered is-size-3">Login</h1>
-        <div className="columns">
-          <div className="column is-half is-offset-one-quarter boxed-form auth-form">
+        <div className="container">
+          <div className="boxed-form auth-form">
             {error && <div className="notification is-danger">{error}</div>}
             <form onSubmit={this.loginUser}>
               <div className="field">
@@ -69,7 +69,7 @@ class LoginPage extends Component {
 
               <div className="field">
                 <div className="control">
-                  <button className="button is-link">Log in</button>
+                  <button className="button-large is-link">Log in</button>
                 </div>
               </div>
             </form>
