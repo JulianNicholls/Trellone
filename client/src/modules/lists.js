@@ -19,7 +19,6 @@ export default (state = [], action) => {
       return state.filter(({ _id }) => _id !== action.id);
 
     case ADD_TASK:
-      console.log({ action });
       const lists = [...state];
       const updateList = lists.find(({ _id }) => _id === action.listId);
 
@@ -80,7 +79,6 @@ export const addTask = (listId, task) => async (dispatch, getState) => {
       headers: { Authorization: getState().auth.token }
     });
 
-    console.log({ response, task });
     if (response.data.nModified === 1) dispatch({ type: ADD_TASK, task, listId });
   } catch (error) {
     console.error({ error });

@@ -12,9 +12,7 @@ const cardImageStyle = {
 
 const BoardCard = ({ _id, name, backgroundURL }) => (
   <div className="card">
-    <header className="card-header">
-      <p className="card-header-title">{name}</p>
-    </header>
+    <header className="card-header">{name}</header>
     <div className="card-image" style={cardImageStyle}>
       <Link to={`/board/${_id}`}>
         {backgroundURL && (
@@ -22,7 +20,7 @@ const BoardCard = ({ _id, name, backgroundURL }) => (
         )}
       </Link>
     </div>
-    <footer className="card-footer">
+    <footer>
       <Link to={`/board/${_id}`} className="card-footer-item">
         Open
       </Link>

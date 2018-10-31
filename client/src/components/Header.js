@@ -6,9 +6,9 @@ import { loadUser, logout } from '../modules/auth';
 
 class Header extends React.Component {
   componentDidMount() {
-    if (this.props.auth.token && !this.props.auth.user) {
-      this.props.loadUser();
-    }
+    const { auth, loadUser } = this.props;
+
+    if (auth.token && !auth.user) loadUser();
   }
 
   logoutUser = () => {
@@ -18,52 +18,48 @@ class Header extends React.Component {
     history.replace('/login');
   };
 
-  render() {
+  userOrButtons = () => {
     const { user } = this.props.auth;
 
-    return (
-      <nav
-        className="navbar is-primary"
-        role="navigation"
-        aria-label="main navigation"
-      >
-        <div className="navbar-brand">
-          <Link to="/" className="navbar-item is-size-4">
-            <strong>Trellone</strong>
+    if (!user) {
+      return (
+        <div className="buttons">
+          <Link to="/login" className="button is-link">
+            Log in
+          </Link>
+
+          <Link to="/signup" className="button is-link">
+            Sign up
           </Link>
         </div>
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            {user ? (
-              <React.Fragment>
-                {user.avatarURL && (
-                  <div className="navbar-item">
-                    <img src={user.avatarURL} alt="User Avatar" />
-                  </div>
-                )}
-                <div className="navbar-item">{user.displayName}</div>
-                <div className="navbar-item">
-                  <button onClick={this.logoutUser} className="button is-link">
-                    Log out{' '}
-                  </button>
-                </div>
-              </React.Fragment>
-            ) : (
-              <div className="navbar-item">
-                <div className="buttons">
-                  <Link to="/login" className="button is-link">
-                    Log in
-                  </Link>
+      );
+    }
 
-                  <Link to="/signup" className="button is-link">
-                    Sign up
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+    return (
+      <React.Fragment>
+        {user.avatarURL && <img src={user.avatarURL} alt="User Avatar" />}
+        <div className="navbar-item">{user.displayName}</div>
+        <div className="navbar-item">
+          <button onClick={this.logoutUser} className="button is-link">
+            Log out
+          </button>
         </div>
-      </nav>
+      </React.Fragment>
+    );
+  };
+
+  render() {
+    return (
+      <header>
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <Link to="/" className="navbar-item is-size-4">
+              <strong>Trellone</strong>
+            </Link>
+          </div>
+          {this.userOrButtons()}
+        </nav>
+      </header>
     );
   }
 }
