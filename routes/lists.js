@@ -42,7 +42,7 @@ router.post('/create', requireAuth, async (req, res) => {
 
   const list = await newList.save();
 
-  res.send(list);
+  res.status(201).send(list);
 });
 
 router.post('/createTask/:id', requireAuth, async (req, res) => {
@@ -65,7 +65,7 @@ router.post('/createTask/:id', requireAuth, async (req, res) => {
     { $push: { tasks: newTask } }
   );
 
-  res.send(response);
+  res.status(201).send(response);
 });
 
 // Archive a list

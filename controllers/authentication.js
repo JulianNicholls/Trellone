@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => {
   // Load data from the POST
   const { email, password, displayName, avatarURL } = req.body;
 
-  // An email address and password are mandatory
+  // An email address, disp;lay name, and password are mandatory
   if (
     !email ||
     !password ||
@@ -53,7 +53,7 @@ exports.signup = (req, res, next) => {
       const { email, avatarURL, displayName } = user;
 
       // Respond to request with a JWT
-      res.json({
+      res.status(201).json({
         token: tokenForUser(user),
         user: {
           email,
@@ -65,8 +65,8 @@ exports.signup = (req, res, next) => {
   });
 };
 
-// Log a user in, their email and password have been authenticated
-// We need to return a token
+// Log a user in:
+// Their email and password have been authenticated, we need to return a token
 exports.login = (req, res) => {
   // Passport has put the user specified in the done() callback
   // into the req

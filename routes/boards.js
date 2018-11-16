@@ -35,7 +35,7 @@ router.post('/create', requireAuth, async (req, res) => {
 
   const board = await newBoard.save();
 
-  res.send(board);
+  res.status(201).send(board);
 });
 
 module.exports = router;
