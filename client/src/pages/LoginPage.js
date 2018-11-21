@@ -47,6 +47,7 @@ class LoginPage extends Component {
                     value={email}
                     autoFocus
                     onChange={this.updateField}
+                    required
                   />
                 </div>
               </div>
@@ -63,6 +64,7 @@ class LoginPage extends Component {
                     name="password"
                     value={password}
                     onChange={this.updateField}
+                    required
                   />
                 </div>
               </div>

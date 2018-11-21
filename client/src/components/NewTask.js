@@ -44,7 +44,7 @@ export class NewTask extends Component {
                 name="text"
                 value={text}
                 onChange={this.updateField}
-                autoFocus
+                required
               />
             </div>
           </div>

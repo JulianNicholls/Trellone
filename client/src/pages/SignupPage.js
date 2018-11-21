@@ -67,8 +67,9 @@ class SignupPage extends Component {
                     id="displayName"
                     name="displayName"
                     value={displayName}
-                    autoFocus
                     onChange={this.updateField}
+                    autoFocus
+                    required
                   />
                 </div>
               </div>
@@ -101,6 +102,7 @@ class SignupPage extends Component {
                     name="email"
                     value={email}
                     onChange={this.updateField}
+                    required
                   />
                 </div>
               </div>
@@ -117,6 +119,7 @@ class SignupPage extends Component {
                     name="password"
                     value={password}
                     onChange={this.updateField}
+                    required
                   />
                 </div>
               </div>

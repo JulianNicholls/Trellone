@@ -49,6 +49,7 @@ export class NewBoardCard extends Component {
                     value={name}
                     onChange={this.updateField}
                     autoFocus
+                    required
                   />
                 </div>
               </div>

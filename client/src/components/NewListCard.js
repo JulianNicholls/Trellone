@@ -48,6 +48,7 @@ export class NewListCard extends Component {
                     value={name}
                     onChange={this.updateField}
                     autoFocus
+                    required
                   />
                 </div>
               </div>
