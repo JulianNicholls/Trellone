@@ -20,11 +20,12 @@ export class BoardPage extends Component {
 
   addList = name => {
     const { boards, lists } = this.props;
+    const order = Math.max(lists.map(({ order }) => order)) + 1 || 1;
 
     const newList = {
       name,
       boardId: boards.current._id,
-      order: Math.max(lists.map(({ order }) => order)) + 1
+      order
     };
 
     this.props.createList(newList);
