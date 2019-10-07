@@ -1,31 +1,26 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import Header from './components/Header';
-
-import BoardsPage from './pages/BoardsPage';
-import BoardPage from './pages/BoardPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-
+import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Fragment>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={BoardsPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
-            <Route path="/board/:id" component={BoardPage} />
-          </Switch>
-        </Fragment>
-      </Router>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
