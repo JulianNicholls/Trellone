@@ -7,6 +7,7 @@ const config = require('../config');
 
 // Create local strategy
 const localOptions = { usernameField: 'email' };
+
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
   User.findOne({ email: email }, (err, user) => {
     if (err) return done(err, false);
@@ -30,7 +31,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 // Set up options of JWT strategy
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-  secretOrKey: config.authSecret
+  secretOrKey: config.authSecret,
 };
 
 // Create JWT strategy
@@ -53,5 +54,5 @@ passport.use(localLogin);
 
 module.exports = {
   requireLogin: passport.authenticate('local', { session: false }),
-  requireAuth: passport.authenticate('jwt', { session: false })
+  requireAuth: passport.authenticate('jwt', { session: false }),
 };

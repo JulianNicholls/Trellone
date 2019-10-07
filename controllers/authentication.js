@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => {
   // Load data from the POST
   const { email, password, displayName, avatarURL } = req.body;
 
-  // An email address, disp;lay name, and password are mandatory
+  // An email address, display name, and password are mandatory
   if (
     !email ||
     !password ||
@@ -29,7 +29,7 @@ exports.signup = (req, res, next) => {
   ) {
     return res.status(422).send({
       error:
-        'You must provide a display name, an email address, and a password of at least 6 characters'
+        'You must provide a display name, an email address, and a password of at least 6 characters',
     });
   }
 
@@ -39,6 +39,12 @@ exports.signup = (req, res, next) => {
 
     // If so, return an error
     if (existingUser) {
+      router.get('/', requireAuth, async (req, res) => {
+        const boards = await Board.find({ ownerId: req.user.id });
+
+        res.send(boards);
+      });
+
       return res
         .status(422)
         .send({ error: 'That email address has already been registered' });
@@ -58,8 +64,8 @@ exports.signup = (req, res, next) => {
         user: {
           email,
           avatarURL,
-          displayName
-        }
+          displayName,
+        },
       });
     });
   });
@@ -78,7 +84,7 @@ exports.login = (req, res) => {
     user: {
       email,
       avatarURL,
-      displayName
-    }
+      displayName,
+    },
   });
 };

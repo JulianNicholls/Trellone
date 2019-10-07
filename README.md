@@ -14,7 +14,7 @@ A Trello Clone written with the MERN stack.
 * [x] Create Endpoints for Login and Signup
 * [x] Create Endpoint for current user
 * [x] Create Endpoints for Boards
-  * [x] Create Endpoint for user boards 
+  * [x] Create Endpoint for user boards
   * [x] Create Endpoint for single board
   * [x] Create Endpoint for new board
 * [x] Create Endpoints for Lists
@@ -62,7 +62,7 @@ A Trello Clone written with the MERN stack.
 
 ## Git client
 
-I have used Git at the command-line for 10 years.
+I have used Git at the command-line for more than 10 years.
 Over that time, I have tried many different graphical shells for Git,
 without finding one that was easier and nicer to use than the command-line
 (in my view).

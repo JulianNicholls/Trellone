@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { requireAuth } = require('../services/passport');
 const Board = require('../models/Board');
 
-// GET users listing.
+// GET boards listing.
 router.get('/', requireAuth, async (req, res) => {
   const boards = await Board.find({ ownerId: req.user.id });
 
@@ -23,14 +23,14 @@ router.post('/create', requireAuth, async (req, res) => {
 
   if (!req.body.name) {
     return res.status(422).send({
-      error: 'You must provide a name'
+      error: 'You must provide a name',
     });
   }
 
   const newBoard = new Board({
     name,
     backgroundURL,
-    ownerId: req.user.id
+    ownerId: req.user.id,
   });
 
   const board = await newBoard.save();
