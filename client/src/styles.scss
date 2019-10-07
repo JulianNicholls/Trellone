@@ -20,12 +20,29 @@ body {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  height: 3rem;
-  padding: 0 0.5rem;
   background: $bg-dark;
   color: $fg-alt2;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  padding: 0 1rem;
+
+  button {
+    margin-left: 1rem;
+    background: $bg-primary;
+    border: 1px solid $fg-alt1;
+    color: $fg-alt2;
+    padding: 0.3em 0.5rem;;
+
+    &:hover {
+      color: $fg-alt1;
+    }
+  }
+
 }
 
 .brand {

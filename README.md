@@ -2,6 +2,9 @@
 
 A Trello Clone written with the MERN stack.
 
+On 7-Oct-2019, I have restarted the front-end with the latest React,
+using context and hooks.
+
 ## Back End
 
 * [x] Install Express, Volleyball, CORS and make basic server
@@ -32,31 +35,28 @@ A Trello Clone written with the MERN stack.
 
 * [x] Create client with create-react-app
 * [x] Remove c-r-a excesses :-)
-* [x] Install Router and Redux modules
-* [x] Set up Router
-* [x] Set up Redux store
-  * [x] Set up ducks for auth
-  * [x] Set up ducks for boards
-  * [x] Set up ducks for lists
-  * [ ] Set up ducks for tasks
-* [x] Create Header with Signup and Login buttons
-  * [x] Display name and avatar when logged in
-* [x] Create Signup page
-  * [x] Store returned token in Redux store
-* [x] Create Login page
-  * [x] Store returned token in Redux store
-* [x] Create Boards page
-  * [x] Redirect to login page if not logged in
-  * [x] Show user boards
-  * [x] Create new board
-* [x] Create Board Lists page
-  * [x] Redirect to login page if not logged in
-  * [x] Show board lists
-  * [x] Create new list
+* [ ] Install Router module
+* [ ] Set up Router
+* [ ] Set up User Context
+* [ ] Set up Boards Context
+* [ ] Create Header with Signup and Login buttons
+  * [ ] Display name and avatar when logged in
+* [ ] Create Signup page
+  * [ ] Store returned token in Context
+* [ ] Create Login page
+  * [] Store returned token in Context
+* [ ] Create Boards page
+  * [ ] Redirect to login page if not logged in
+  * [ ] Show user boards
+  * [ ] Create new board
+* [ ] Create Board Lists page
+  * [ ] Redirect to login page if not logged in
+  * [ ] Show board lists
+  * [ ] Create new list
   * [ ] Show list tasks
   * [ ] Create new task
 
-  ## ER Diagram
+## ER Diagram
 
   ![ER Diagram](Trellone-ER-Diagram.png)
 
