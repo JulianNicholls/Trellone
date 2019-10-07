@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+$bg-primary: #333;
+$bg-dark: #000;
+$bg-light: #666;
+
+$fg-primary: #eee;
+$fg-alt1: #fff;
+$fg-alt2: #ccc;
+
+$larger-text: 1.5rem;
+$large-text: 2rem;
+
+body {
+  background: $bg-primary;
+  color: $fg-primary;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.5rem;
+  background: $bg-dark;
+  color: $fg-alt2;
+}
+
+.brand {
+  flex: 1;
+  font-size: $larger-text;
+}
