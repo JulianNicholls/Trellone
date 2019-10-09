@@ -12,19 +12,21 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Router>
-        <Switch>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/signup">
-            <SignupPage />
-          </Route>
-          <Route path="/">
-            <BoardsPage />
-          </Route>
-        </Switch>
-      </Router>
+      <div className="container">
+        <Router>
+          <Switch>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/signup">
+              <SignupPage />
+            </Route>
+            <Route path="/">
+              <BoardsPage />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
     </div>
   );
 };

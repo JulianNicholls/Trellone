@@ -11,6 +11,7 @@ $fg-alt2: #ccc;
 $large-text: 2rem;
 $larger-text1: 1.5rem;
 $larger-text2: 1.2rem;
+$smaller-text: 0.8rem;
 
 body {
   background: $bg-primary;
@@ -35,6 +36,7 @@ h2 {
 header {
   background: $bg-dark;
   color: $fg-alt2;
+  font-size: $smaller-text;
   margin-bottom: 0.5rem;
 }
 
@@ -61,7 +63,7 @@ nav {
     border: 1px solid $fg-alt1;
     border-radius: 3px;
     color: $bg-primary;
-    padding: 0.3em 0.5rem;;
+    padding: 0.3em 0.5rem;
 
     &:hover {
       background: $fg-alt2;
@@ -70,6 +72,34 @@ nav {
   }
 }
 
+.container {
+  width: 1000px;
+  max-width: 95vw;
+  margin: 0 auto;
+}
+
 .centred, .centered {
   text-align: center;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 1em;
+
+  .board-card {
+    max-width: 500px;
+    background: $bg-light;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $bg-dark;
+      font-size: $larger-text2;
+      height: $large-text;
+      padding: 0 0.5em;
+    }
+  }
+
 }
