@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   displayName: { type: String, required: true },
@@ -8,10 +8,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     lowercase: true,
     index: true,
-    unique: true
+    unique: true,
   },
   password: { type: String, required: true },
-  avatarURL: String
+  avatarURL: String,
 });
 
 // On save, encrypt the password
@@ -21,7 +21,7 @@ userSchema.pre('save', function(next) {
   bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
 
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
+    bcrypt.hash(user.password, salt, (err, hash) => {
       if (err) return next(err);
 
       user.password = hash;
