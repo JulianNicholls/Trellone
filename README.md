@@ -35,17 +35,21 @@ using context and hooks.
 
 * [x] Create client with create-react-app
 * [x] Remove c-r-a excesses :-)
-* [ ] Install Router module
-* [ ] Set up Router
-* [ ] Set up User Context
+* [x] Install Router module
+* [x] Set up Router
+* [x] Set up User Context
+  * [x] Store returned login token in Context
+  * [ ] Store returned signup token in Context
 * [ ] Set up Boards Context
-* [ ] Create Header with Signup and Login buttons
-  * [ ] Display name and avatar when logged in
-* [ ] Create Signup page
-  * [ ] Store returned token in Context
-* [ ] Create Login page
-  * [] Store returned token in Context
-* [ ] Create Boards page
+* [x] Create Header with Signup and Login buttons
+  * [x] Display name and avatar when logged in
+* [x] Create Login page
+  * [ ] Create Login form
+  * [ ] Wire up to UserContext
+* [x] Create Signup page
+  * [ ] Create Signup form
+  * [ ] Wire up to UserContext
+* [x] Create Boards page
   * [ ] Redirect to login page if not logged in
   * [ ] Show user boards
   * [ ] Create new board
