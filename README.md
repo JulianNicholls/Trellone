@@ -40,7 +40,7 @@ using context and hooks.
 * [x] Set up User Context
   * [x] Store returned login token in Context
   * [ ] Store returned signup token in Context
-* [ ] Set up Boards Context
+* [x] Set up Boards Context
 * [x] Create Header with Signup and Login buttons
   * [x] Display name and avatar when logged in
 * [x] Create Login page
