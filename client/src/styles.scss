@@ -33,13 +33,15 @@ nav {
 
   button {
     margin-left: 1rem;
-    background: $bg-primary;
+    background: $fg-primary;
     border: 1px solid $fg-alt1;
-    color: $fg-alt2;
+    border-radius: 3px;
+    color: $bg-primary;
     padding: 0.3em 0.5rem;;
 
     &:hover {
-      color: $fg-alt1;
+      background: $fg-alt2;
+      color: $bg-dark;
     }
   }
 

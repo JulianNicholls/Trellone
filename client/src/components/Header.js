@@ -4,14 +4,22 @@ import { useCurrentUser } from '../context/user';
 const Header = () => {
   const currentUser = useCurrentUser();
 
+  const login = () => {
+    currentUser.login('juliannicholls29@gmail.com', 'password');
+  };
+
   const userOrButtons = () => {
-    const { token, avatarURL, displayName } = currentUser;
+    const {
+      token,
+      user: { avatarURL, displayName },
+    } = currentUser;
 
     if (token) {
       return (
         <>
           {avatarURL && <img src={avatarURL} alt="User Avatar" />}
           <span>{displayName}</span>
+          <button onClick={currentUser.logout}>Log Out</button>
         </>
       );
     }
@@ -21,7 +29,7 @@ const Header = () => {
     return (
       <>
         <button>Sign up</button>
-        <button>Log in</button>
+        <button onClick={login}>Log in</button>
       </>
     );
   };
