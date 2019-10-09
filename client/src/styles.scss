@@ -8,8 +8,9 @@ $fg-primary: #eee;
 $fg-alt1: #fff;
 $fg-alt2: #ccc;
 
-$larger-text: 1.5rem;
 $large-text: 2rem;
+$larger-text1: 1.5rem;
+$larger-text2: 1.2rem;
 
 body {
   background: $bg-primary;
@@ -19,9 +20,22 @@ body {
   padding: 0;
 }
 
+h1, h2, h3, h4, h4, h6 {
+  margin: 0 0 0.5em 0;
+}
+
+h1 {
+  font-size: $large-text;
+}
+
+h2 {
+  font-size: $larger-text1;
+}
+
 header {
   background: $bg-dark;
   color: $fg-alt2;
+  margin-bottom: 0.5rem;
 }
 
 nav {
@@ -30,6 +44,16 @@ nav {
   justify-content: space-between;
   height: 3rem;
   padding: 0 1rem;
+
+  .brand {
+    flex: 1;
+    font-size: $larger-text1;
+  }
+
+  img {
+    height: 80%;
+    margin: 0 1rem;
+  }
 
   button {
     margin-left: 1rem;
@@ -44,10 +68,8 @@ nav {
       color: $bg-dark;
     }
   }
-
 }
 
-.brand {
-  flex: 1;
-  font-size: $larger-text;
+.centred , .centered{
+  text-align: center;
 }
