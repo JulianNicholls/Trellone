@@ -51,7 +51,7 @@ using context and hooks.
   * [ ] Wire up to UserContext
 * [x] Create Boards page
   * [ ] Redirect to login page if not logged in
-  * [ ] Show user boards
+  * [x] Show user boards
   * [ ] Create new board
 * [ ] Create Board Lists page
   * [ ] Redirect to login page if not logged in
