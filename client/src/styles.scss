@@ -37,6 +37,11 @@ h2 {
   font-size: $larger-text1;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 header {
   background: $bg-dark;
   color: $fg-alt2;
@@ -92,10 +97,21 @@ nav {
   grid-gap: 1em;
 
   .board-card {
-    max-width: 500px;
+    max-width: 450px;
     background: $bg-light;
 
-    &__header {
+    &__content {
+      min-height: 200px;
+
+      img {
+        display: block;
+        border: 1px solid white;
+        width: 95%;
+        margin: 0.2em auto;
+      }
+    }
+
+    &__footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -104,6 +120,7 @@ nav {
       height: $large-text;
       padding: 0 0.5em;
     }
+
   }
 
 }
