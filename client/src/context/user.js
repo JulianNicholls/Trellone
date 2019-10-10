@@ -39,14 +39,15 @@ export const UserProvider = ({ children }) => {
     try {
       const response = await axios.post('/auth/login', { email, password });
 
-      console.log(response);
-
       const { token, user } = response.data;
       setToken(token);
       localStorage.trelloneAuth = token;
       setUser(user);
-    } catch (err) {
-      console.error(err);
+
+      return { ok: true };
+    } catch (error) {
+      // console.error(error);
+      return { error };
     }
   };
 
@@ -58,8 +59,11 @@ export const UserProvider = ({ children }) => {
       setToken(token);
       localStorage.trelloneAuth = token;
       setUser(user);
-    } catch (err) {
-      console.error(err);
+
+      return { ok: true };
+    } catch (error) {
+      console.error(error);
+      return { error };
     }
   };
 

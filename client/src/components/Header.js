@@ -1,25 +1,30 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+
 import { useCurrentUser } from '../context/user';
 
-const Header = () => {
-  const currentUser = useCurrentUser();
-
-  const login = () => {
-    currentUser.login('juliannicholls29@gmail.com', 'password');
-  };
+const Header = ({ history }) => {
+  const {
+    token,
+    user: { avatarURL, displayName },
+    logout,
+  } = useCurrentUser();
 
   const userOrButtons = () => {
-    const {
-      token,
-      user: { avatarURL, displayName },
-    } = currentUser;
-
     if (token) {
       return (
         <>
           {avatarURL && <img src={avatarURL} alt="User Avatar" />}
           <span>{displayName}</span>
-          <button onClick={currentUser.logout}>Log Out</button>
+          <button
+            className="button"
+            onClick={() => {
+              logout();
+              history.push('/login');
+            }}
+          >
+            Log Out
+          </button>
         </>
       );
     }
@@ -28,8 +33,12 @@ const Header = () => {
 
     return (
       <>
-        <button>Sign up</button>
-        <button onClick={login}>Log in</button>
+        <Link to="/signup" className="button">
+          Sign up
+        </Link>
+        <Link to="/login" className="button">
+          Log in
+        </Link>
       </>
     );
   };
@@ -44,4 +53,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

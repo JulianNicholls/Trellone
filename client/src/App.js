@@ -11,10 +11,10 @@ import './styles.scss';
 
 const App = () => {
   return (
-    <div>
-      <Header />
-      <div className="container">
-        <Router>
+    <Router>
+      <div>
+        <Header />
+        <div className="container">
           <Switch>
             <Route path="/login">
               <LoginPage />
@@ -32,9 +32,9 @@ const App = () => {
               <BoardsPage />
             </Route>
           </Switch>
-        </Router>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
 

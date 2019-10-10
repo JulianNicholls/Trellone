@@ -44,8 +44,8 @@ using context and hooks.
 * [x] Create Header with Signup and Login buttons
   * [x] Display name and avatar when logged in
 * [x] Create Login page
-  * [ ] Create Login form
-  * [ ] Wire up to UserContext
+  * [x] Create Login form
+  * [x] Wire up to UserContext
 * [x] Create Signup page
   * [ ] Create Signup form
   * [ ] Wire up to UserContext
