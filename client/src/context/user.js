@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
           },
         });
 
-        console.log('UPlU:', response);
         setToken(token);
         setUser(response.data.user);
       } catch (err) {

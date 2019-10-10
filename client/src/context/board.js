@@ -21,14 +21,28 @@ export const BoardProvider = ({ children }) => {
 
         setBoards(response.data);
       } catch (err) {
-        console.log('Board loading failed:', err);
+        console.error('Board loading failed:', err);
       }
     };
 
     if (token) loadBoards();
   }, [token]);
 
-  return <BoardContext.Provider value={boards}>{children}</BoardContext.Provider>;
+  const boardById = boardId => {
+    const board = boards.find(({ _id }) => _id === boardId);
+
+    if (boards.length > 0 && !board)
+      console.error(`board ID:`, boardId, 'not found');
+
+    return board;
+  };
+
+  const state = {
+    boards,
+    boardById,
+  };
+
+  return <BoardContext.Provider value={state}>{children}</BoardContext.Provider>;
 };
 
 BoardProvider.propTypes = {

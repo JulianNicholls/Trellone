@@ -13,6 +13,10 @@ $larger-text1: 1.5rem;
 $larger-text2: 1.2rem;
 $smaller-text: 0.8rem;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   background: $bg-primary;
   color: $fg-primary;
