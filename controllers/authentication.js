@@ -6,13 +6,13 @@ const config = require('../config');
 const HOURS25 = 25 * 3600; // 25 hours of seconds
 
 // Return a JWT for the given user
-function tokenForUser(user) {
-  const timestamp = new Date().getTime() / 1000;
+exports.tokenForUser = user => {
+  const timestamp = Math.floor(new Date().getTime() / 1000);
   return jwt.encode(
-    { sub: user.id, iat: timestamp, exp: timestamp + HOURS25 },
+    { iss: 'Trellone', sub: user.id, iat: timestamp, exp: timestamp + HOURS25 },
     config.authSecret
   );
-}
+};
 
 // Sign a user up
 exports.signup = (req, res, next) => {
@@ -39,12 +39,6 @@ exports.signup = (req, res, next) => {
 
     // If so, return an error
     if (existingUser) {
-      router.get('/', requireAuth, async (req, res) => {
-        const boards = await Board.find({ ownerId: req.user.id });
-
-        res.send(boards);
-      });
-
       return res
         .status(422)
         .send({ error: 'That email address has already been registered' });
@@ -60,7 +54,7 @@ exports.signup = (req, res, next) => {
 
       // Respond to request with a JWT
       res.status(201).json({
-        token: tokenForUser(user),
+        token: exports.tokenForUser(user),
         user: {
           email,
           avatarURL,
@@ -80,7 +74,7 @@ exports.login = (req, res) => {
   const { email, avatarURL, displayName } = req.user;
 
   res.json({
-    token: tokenForUser(req.user),
+    token: exports.tokenForUser(req.user),
     user: {
       email,
       avatarURL,
