@@ -15,34 +15,35 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    const loadUser = async token => {
+    const loadUser = async userToken => {
       try {
         const response = await axios.get('/api/users/current', {
           headers: {
-            Authorization: token,
+            Authorization: userToken,
           },
         });
 
-        setToken(token);
+        setToken(userToken);
         setUser(response.data.user);
       } catch (err) {
         console.log('Token expired');
+        localStorage.removeItem('trelloneAuth');
       }
     };
 
-    const token = localStorage.trelloneAuth;
+    const lsToken = localStorage.trelloneAuth;
 
-    if (token) loadUser(token);
+    if (lsToken) loadUser(lsToken);
   }, []);
 
   const login = async (email, password) => {
     try {
       const response = await axios.post('/auth/login', { email, password });
 
-      const { token, user } = response.data;
-      setToken(token);
-      localStorage.trelloneAuth = token;
-      setUser(user);
+      const { token: userToken, user: loggedinUser } = response.data;
+      setToken(userToken);
+      localStorage.trelloneAuth = userToken;
+      setUser(loggedinUser);
 
       return { ok: true };
     } catch (error) {
@@ -51,19 +52,26 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const signup = async (email, password) => {
-    try {
-      const response = await axios.post('/auth/signup', { email, password });
+  const signup = async (email, password, displayName, avatarURL) => {
+    let response;
 
-      const { token, user } = response.data;
-      setToken(token);
-      localStorage.trelloneAuth = token;
-      setUser(user);
+    try {
+      response = await axios.post('/auth/signup', {
+        displayName,
+        avatarURL,
+        email,
+        password,
+      });
+
+      const { token: userToken, user: newUser } = response.data;
+      setToken(userToken);
+      localStorage.trelloneAuth = userToken;
+      setUser(newUser);
 
       return { ok: true };
-    } catch (error) {
-      console.error(error);
-      return { error };
+    } catch (err) {
+      // console.warn('uc.signup:', { response: err.response });
+      return err.response;
     }
   };
 
