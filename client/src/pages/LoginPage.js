@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import ErrorsPanel from '../components/ErrorsPanel';
 import { useCurrentUser } from '../context/user';
 
 const LoginPage = ({ history }) => {
-  const user = useCurrentUser();
+  const { login } = useCurrentUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -14,32 +15,19 @@ const LoginPage = ({ history }) => {
 
     const newErrors = [];
 
-    console.log({ email, password });
-
     if (email === '') newErrors.push('You must enter an email address');
-    if (password.length < 6) newErrors.push('You must enter a password');
+    if (password.length < 6)
+      newErrors.push('You must enter a password of at least 6 characters');
 
     if (newErrors.length === 0) {
-      const response = await user.login(email, password);
+      const response = await login(email, password);
 
-      if (response.ok) history.push('/');
+      if (response.ok) return history.push('/');
 
       newErrors.push('The email address or password were not recognised');
     }
 
     setErrors(newErrors);
-  };
-
-  const renderErrors = () => {
-    if (errors.length === 0) return;
-
-    return (
-      <div className="errors">
-        {errors.map(e => (
-          <div key={e}>{e}</div>
-        ))}
-      </div>
-    );
   };
 
   return (
@@ -69,7 +57,7 @@ const LoginPage = ({ history }) => {
             />
           </div>
 
-          {renderErrors()}
+          <ErrorsPanel errors={errors} />
 
           <div className="button-holder">
             <button type="submit">Log in</button>

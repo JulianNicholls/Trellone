@@ -2,8 +2,8 @@
 
 A Trello Clone written with the MERN stack.
 
-On 7-Oct-2019, I have restarted the front-end with the latest React,
-using context and hooks.
+On 7-Oct-2019, I have restarted the front-end with the latest React, using
+context and hooks. The checkboxes below show the restarted progress.
 
 ## Back End
 
@@ -39,7 +39,8 @@ using context and hooks.
 * [x] Set up Router
 * [x] Set up User Context
   * [x] Store returned login token in Context
-  * [ ] Store returned signup token in Context
+  * [x] Store returned signup token in Context
+  * [x] Remove token from storage on logout
 * [x] Set up Boards Context
 * [x] Create Header with Signup and Login buttons
   * [x] Display name and avatar when logged in
@@ -47,13 +48,13 @@ using context and hooks.
   * [x] Create Login form
   * [x] Wire up to UserContext
 * [x] Create Signup page
-  * [ ] Create Signup form
-  * [ ] Wire up to UserContext
+  * [x] Create Signup form
+  * [x] Wire up to UserContext
 * [x] Create Boards page
   * [ ] Redirect to login page if not logged in
   * [x] Show user boards
   * [ ] Create new board
-* [ ] Create Board Lists page
+* [x] Create Board Lists page
   * [ ] Redirect to login page if not logged in
   * [ ] Show board lists
   * [ ] Create new list
