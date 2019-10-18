@@ -6,9 +6,7 @@ const ErrorsPanel = ({ errors }) => {
 
   return (
     <div className="errors">
-      {errors.map(e => (
-        <div key={e}>{e}</div>
-      ))}
+      {errors.map((e, idx) => (<div key={idx}>{e}</div>))}
     </div>
   );
 };
