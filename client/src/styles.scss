@@ -99,42 +99,6 @@ nav {
   text-align: center;
 }
 
-.board-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 1em;
-
-  .board-card {
-    max-width: 350px;
-    background: $bg-light;
-
-    &__content {
-      min-height: 200px;
-      max-height: 300px;
-      overflow: hidden;
-
-      img {
-        display: block;
-        border: 1px solid white;
-        width: 95%;
-        object-fit: cover;
-        margin: 0.2em auto;
-      }
-    }
-
-    &__footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: $bg-dark;
-      font-size: $larger-text2;
-      height: $large-text;
-      padding: 0 0.5em;
-    }
-
-  }
-}
-
 .user-panel {
   background: $bg-light;
   width: 50%;
@@ -176,6 +140,68 @@ nav {
 
     :focus, :hover {
       color: $fg-alt1;
+    }
+  }
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em;
+
+  .board-card {
+    max-width: 350px;
+    background: $bg-light;
+
+    &__content {
+      min-height: 200px;
+      max-height: 300px;
+      overflow: hidden;
+
+      img {
+        display: block;
+        border: 1px solid white;
+        width: 95%;
+        object-fit: cover;
+        margin: 0.2em auto;
+      }
+    }
+
+    &__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $bg-dark;
+      font-size: $larger-text2;
+      height: $large-text;
+      padding: 0 0.5em;
+    }
+  }
+}
+
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em;
+
+  .list-card {
+    max-width: 350px;
+    background: $bg-light;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $bg-dark;
+      font-size: $larger-text2;
+      height: $large-text;
+      padding: 0 0.5em;
+    }
+
+    &__content {
+      min-height: 200px;
+      max-height: 300px;
+      overflow: hidden;
     }
   }
 }
