@@ -9,6 +9,7 @@ const BoardContext = createContext();
 export const BoardProvider = ({ children }) => {
   const { token } = useCurrentUser();
   const [boards, setBoards] = useState([]);
+  const [currentBoard, setCurrentBoard] = useState(null);
 
   useEffect(() => {
     const loadBoards = async () => {
@@ -34,12 +35,15 @@ export const BoardProvider = ({ children }) => {
     if (boards.length > 0 && !board)
       console.error(`board ID:`, boardId, 'not found');
 
+    setCurrentBoard(board); // Assume it's become the current one
+
     return board;
   };
 
   const state = {
     boards,
     boardById,
+    currentBoard,
   };
 
   return <BoardContext.Provider value={state}>{children}</BoardContext.Provider>;

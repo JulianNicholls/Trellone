@@ -2,7 +2,7 @@
 
 A Trello Clone written with the MERN stack.
 
-On 7-Oct-2019, I have restarted the front-end with the latest React, using
+On 7-Oct-2019, I restarted the front-end with the latest React, using
 context and hooks. The checkboxes below show the restarted progress.
 
 ## Back End
