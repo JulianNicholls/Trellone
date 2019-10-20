@@ -27,7 +27,7 @@ export const ListProvider = ({ children }) => {
       }
     };
 
-    if (token) loadLists();
+    if (token && currentBoard) loadLists();
   }, [token, currentBoard]);
 
   const state = {
