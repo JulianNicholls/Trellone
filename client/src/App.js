@@ -14,25 +14,23 @@ const App = () => {
     <Router>
       <div>
         <Header />
-        <div className="container">
-          <Switch>
-            <Route path="/login">
-              <LoginPage />
-            </Route>
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
 
-            <Route path="/signup">
-              <SignupPage />
-            </Route>
+          <Route path="/signup">
+            <SignupPage />
+          </Route>
 
-            <Route path="/lists/:boardId">
-              <ListsPage />
-            </Route>
+          <Route path="/lists/:boardId">
+            <ListsPage />
+          </Route>
 
-            <Route path="/">
-              <BoardsPage />
-            </Route>
-          </Switch>
-        </div>
+          <Route path="/">
+            <BoardsPage />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

@@ -54,7 +54,6 @@ header {
   background: $bg-dark;
   color: $fg-alt2;
   font-size: $smaller-text;
-  margin-bottom: 0.5rem;
 }
 
 nav {
@@ -89,10 +88,10 @@ nav {
   }
 }
 
-.container {
+main {
   width: 1000px;
   max-width: 95vw;
-  margin: 0 auto;
+  margin: 0.5rem auto;
 }
 
 .centred, .centered {
