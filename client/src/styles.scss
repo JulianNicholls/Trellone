@@ -98,6 +98,11 @@ main {
   text-align: center;
 }
 
+.icon {
+  margin-left: 0.2em;
+  cursor: pointer;
+}
+
 .user-panel {
   background: $bg-light;
   width: 50%;
@@ -201,6 +206,25 @@ main {
       min-height: 200px;
       max-height: 300px;
       overflow: hidden;
+    }
+  }
+}
+
+.task-list {
+  margin: 0.5em;
+  padding: 0;
+  list-style-type: none;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $bg-dark;
+    margin-bottom: 1px;
+    padding: 0.5em;
+
+    div.text {
+      flex: 1;
     }
   }
 }
