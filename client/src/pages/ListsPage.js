@@ -1,45 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+
+import TaskList from '../components/TaskList';
 
 import { useBoards } from '../context/board';
 import { useLists } from '../context/list';
-
-const TaskList = ({ tasks, listId }) => {
-  const { addTask } = useLists();
-  const [text, setText] = useState('');
-
-  const addNewTask = event => {
-    if (event.key === 'Enter') {
-      console.log(`Add task '${text}' to list ${listId}`);
-      addTask(text, 5, listId);
-      setText('');
-    }
-  };
-
-  return (
-    <ul className="task-list">
-      {tasks.map(task => (
-        <li className="task-list__item" key={task.order}>
-          <div className="text">{task.text}</div>
-          <div>
-            <FaEdit className="icon" />
-            <FaTrashAlt className="icon" />
-          </div>
-        </li>
-      ))}
-      <li className="task-list__item">
-        <input
-          type="text"
-          placeholder="New task"
-          value={text}
-          onChange={event => setText(event.target.value)}
-          onKeyUp={addNewTask}
-        />
-      </li>
-    </ul>
-  );
-};
 
 const List = ({ _id, name, tasks }) => (
   <div className="list-card">

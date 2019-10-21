@@ -15,7 +15,7 @@ export const ListProvider = ({ children }) => {
   useEffect(() => {
     const loadLists = async () => {
       try {
-        let response = await axios.get(`/api/lists/board/${currentBoard._id}`, {
+        const response = await axios.get(`/api/lists/board/${currentBoard._id}`, {
           headers: {
             Authorization: token,
           },
@@ -32,7 +32,7 @@ export const ListProvider = ({ children }) => {
 
   const addTask = async (text, order, listId) => {
     try {
-      let response = await axios.post(
+      await axios.post(
         `/api/lists/createTask/${listId}`,
         { text, order },
         {
