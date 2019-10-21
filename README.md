@@ -25,9 +25,6 @@ context and hooks. The checkboxes below show the restarted progress.
   * [x] Create Endpoint for single list
   * [x] Create Endpoint for new list
   * [x] Create Endpoint for archive list
-* [x] Create Endpoints for Tasks
-  * [x] Create Endpoint for list tasks
-  * [x] Create Endpoint for single task
   * [x] Create Endpoint for new task
   * [x] Create Endpoint for archive task
 
@@ -56,10 +53,13 @@ context and hooks. The checkboxes below show the restarted progress.
   * [ ] Create new board
 * [x] Create Board Lists page
   * [ ] Redirect to login page if not logged in
-  * [ ] Show board lists
+  * [x] Show board lists
   * [ ] Create new list
-  * [ ] Show list tasks
-  * [ ] Create new task
+  * [ ] Archive list
+  * [x] Show list tasks
+  * [x] Create new task
+  * [ ] Edit task
+  * [ ] Archive task
 
 ## ER Diagram
 
