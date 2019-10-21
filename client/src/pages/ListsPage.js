@@ -6,11 +6,13 @@ import { useBoards } from '../context/board';
 import { useLists } from '../context/list';
 
 const TaskList = ({ tasks, listId }) => {
+  const { addTask } = useLists();
   const [text, setText] = useState('');
 
-  const addTask = event => {
+  const addNewTask = event => {
     if (event.key === 'Enter') {
       console.log(`Add task '${text}' to list ${listId}`);
+      addTask(text, 5, listId);
       setText('');
     }
   };
@@ -32,7 +34,7 @@ const TaskList = ({ tasks, listId }) => {
           placeholder="New task"
           value={text}
           onChange={event => setText(event.target.value)}
-          onKeyUp={addTask}
+          onKeyUp={addNewTask}
         />
       </li>
     </ul>

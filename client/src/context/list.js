@@ -30,8 +30,31 @@ export const ListProvider = ({ children }) => {
     if (token && currentBoard) loadLists();
   }, [token, currentBoard]);
 
+  const addTask = async (text, order, listId) => {
+    try {
+      let response = await axios.post(
+        `/api/lists/createTask/${listId}`,
+        { text, order },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const newLists = lists.slice();
+      const updateList = newLists.find(({ _id }) => _id === listId);
+
+      updateList.tasks.push({ text, order, archived: false });
+      setLists(newLists);
+    } catch (err) {
+      console.error('Adding task failed:', err);
+    }
+  };
+
   const state = {
     lists,
+    addTask,
   };
 
   return <ListContext.Provider value={state}>{children}</ListContext.Provider>;
