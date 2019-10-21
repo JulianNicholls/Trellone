@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 import { useBoards } from '../context/board';
 import { useLists } from '../context/list';
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, listId }) => {
+  const [text, setText] = useState('');
+
+  const addTask = event => {
+    if (event.key === 'Enter') {
+      console.log(`Add task '${text}' to list ${listId}`);
+      setText('');
+    }
+  };
+
   return (
     <ul className="task-list">
       {tasks.map(task => (
@@ -17,15 +26,24 @@ const TaskList = ({ tasks }) => {
           </div>
         </li>
       ))}
+      <li className="task-list__item">
+        <input
+          type="text"
+          placeholder="New task"
+          value={text}
+          onChange={event => setText(event.target.value)}
+          onKeyUp={addTask}
+        />
+      </li>
     </ul>
   );
 };
 
-const List = ({ name, tasks }) => (
+const List = ({ _id, name, tasks }) => (
   <div className="list-card">
     <div className="list-card__header">{name}</div>
     <div className="list-card__content">
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} listId={_id} />
     </div>
   </div>
 );
@@ -59,7 +77,7 @@ const ListsPage = () => {
           {renderLists()}
           <div className="list-card">
             <div className="list-card__content">
-              <button>Create New</button>
+              <button>Add List</button>
             </div>
           </div>
         </div>

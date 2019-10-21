@@ -44,6 +44,7 @@ const LoginPage = ({ history }) => {
               value={email}
               onChange={event => setEmail(event.target.value)}
               autoFocus={true}
+              required
             />
           </div>
 
@@ -54,6 +55,7 @@ const LoginPage = ({ history }) => {
               id="password"
               value={password}
               onChange={event => setPassword(event.target.value)}
+              required
             />
           </div>
 

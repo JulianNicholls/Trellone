@@ -50,6 +50,7 @@ const SignupPage = ({ history }) => {
               value={displayName}
               onChange={event => setDisplayName(event.target.value)}
               autoFocus={true}
+              required
             />
           </div>
 
@@ -72,6 +73,7 @@ const SignupPage = ({ history }) => {
               value={email}
               onChange={event => setEmail(event.target.value)}
               autoFocus={true}
+              required
             />
           </div>
 
@@ -82,6 +84,7 @@ const SignupPage = ({ history }) => {
               id="password"
               value={password}
               onChange={event => setPassword(event.target.value)}
+              required
             />
           </div>
 
