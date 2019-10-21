@@ -52,7 +52,7 @@ const ListsPage = () => {
 
   return (
     <div style={bgStyle}>
-      <main>
+      <main style={{ marginTop: 0, paddingTop: '0.5em' }}>
         <h1 className="centred">{name}</h1>
 
         <div className="list-grid">
