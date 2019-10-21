@@ -13,6 +13,12 @@ $larger-text1: 1.5rem;
 $larger-text2: 1.2rem;
 $smaller-text: 0.8rem;
 
+@mixin flex-center-sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -54,12 +60,6 @@ header {
   background: $bg-dark;
   color: $fg-alt2;
   font-size: $smaller-text;
-}
-
-@mixin flex-center-sb {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 nav {
@@ -105,6 +105,10 @@ main {
 .icon {
   margin-left: 0.2em;
   cursor: pointer;
+}
+
+.archived {
+  text-decoration: line-through;
 }
 
 .user-panel {
@@ -214,7 +218,7 @@ main {
 
   &__item {
     @include flex-center-sb;
-    background: $bg-dark;
+    background: $bg-primary;
     margin-bottom: 1px;
     padding: 0.4em;
 

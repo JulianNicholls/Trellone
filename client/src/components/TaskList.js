@@ -20,7 +20,11 @@ const TaskList = ({ tasks, listId }) => {
     <ul className="task-list">
       {tasks.map(task => (
         <li className="task-list__item" key={task.order}>
-          <div className="text">{task.text}</div>
+          {task.archived ? (
+            <div className="text archived">{task.text}</div>
+          ) : (
+            <div className="text">{task.text}</div>
+          )}
           <div>
             <FaEdit className="icon" />
             <FaTrashAlt className="icon" />
