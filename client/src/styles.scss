@@ -56,10 +56,14 @@ header {
   font-size: $smaller-text;
 }
 
-nav {
+@mixin flex-center-sb {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+nav {
+  @include flex-center-sb;
   height: 3rem;
   padding: 0 1rem;
 
@@ -110,9 +114,7 @@ main {
   padding: 2em;
 
   .form-field {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-center-sb;
     background: $bg-dark;
     margin-bottom: 1px;
     padding: 0.5em;
@@ -171,9 +173,7 @@ main {
     }
 
     &__footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex-center-sb;
       background: $bg-dark;
       font-size: $larger-text2;
       height: $large-text;
@@ -192,9 +192,7 @@ main {
     background: $bg-light;
 
     &__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex-center-sb;
       background: $bg-dark;
       font-size: $larger-text2;
       height: $large-text;
@@ -215,15 +213,17 @@ main {
   list-style-type: none;
 
   &__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-center-sb;
     background: $bg-dark;
     margin-bottom: 1px;
     padding: 0.4em;
 
     div.text {
       flex: 1;
+    }
+
+    input {
+      width: 100%;
     }
   }
 }
