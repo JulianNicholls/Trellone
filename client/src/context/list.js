@@ -42,7 +42,7 @@ export const ListProvider = ({ children }) => {
         }
       );
 
-      const newLists = lists.slice();
+      const newLists = [...lists];
       const updateList = newLists.find(({ _id }) => _id === listId);
 
       updateList.tasks.push({ text, order, archived: false });
@@ -52,9 +52,39 @@ export const ListProvider = ({ children }) => {
     }
   };
 
+  const updateTask = (task, listId) => {
+    const newLists = [...lists];
+    const list = newLists.find(({ _id }) => _id === listId);
+
+    const taskIdx = list.tasks.findIndex(({ _id }) => _id === task._id);
+    list.tasks[taskIdx] = task;
+
+    updateList(list);
+  };
+
+  const updateList = async list => {
+    try {
+      await axios.put(`/api/lists/update/${list._id}`, list, {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const newLists = [...lists];
+      const listIdx = newLists.findIndex(({ _id }) => _id === list._id);
+
+      newLists[listIdx] = list;
+      setLists(newLists);
+    } catch (err) {
+      console.error('Updating list failed:', err);
+    }
+  };
+
   const state = {
     lists,
     addTask,
+    updateTask,
+    updateList,
   };
 
   return <ListContext.Provider value={state}>{children}</ListContext.Provider>;
