@@ -6,28 +6,66 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { useLists } from '../context/list';
 
 const TaskList = ({ tasks, listId }) => {
-  const { addTask } = useLists();
-  const [text, setText] = useState('');
+  const { addTask, updateTask } = useLists();
+  const [newText, setNewText] = useState('');
+  const [updating, setUpdating] = useState(false);
+  const [updateText, setUpdateText] = useState('');
 
   const addNewTask = event => {
     if (event.key === 'Enter') {
-      addTask(text, 5, listId);
-      setText('');
+      addTask(newText, 5, listId);
+      setNewText('');
     }
+  };
+
+  const startEdit = task => {
+    setUpdateText(task.text);
+    setUpdating(true);
+  };
+
+  const editTask = (event, task) => {
+    if (event.key === 'Enter') {
+      const updatedTask = { ...task, text: updateText };
+
+      updateTask(updatedTask, listId);
+      setUpdating(false);
+    } else if (event.key === 'Escape') {
+      setUpdating(false);
+    }
+  };
+
+  const archiveTask = task => {
+    const updatedTask = { ...task, archived: !task.archived };
+
+    updateTask(updatedTask, listId);
+  };
+
+  const renderText = task => {
+    if (updating)
+      return (
+        <input
+          className="update"
+          type="text"
+          value={updateText}
+          onChange={event => setUpdateText(event.target.value)}
+          onKeyUp={event => editTask(event, task)}
+          autoFocus
+        />
+      );
+
+    if (task.archived) return <div className="text archived">{task.text}</div>;
+
+    return <div className="text">{task.text}</div>;
   };
 
   return (
     <ul className="task-list">
       {tasks.map(task => (
         <li className="task-list__item" key={task.order}>
-          {task.archived ? (
-            <div className="text archived">{task.text}</div>
-          ) : (
-            <div className="text">{task.text}</div>
-          )}
+          {renderText(task)}
           <div>
-            <FaEdit className="icon" />
-            <FaTrashAlt className="icon" />
+            <FaEdit className="icon" onClick={() => startEdit(task)} />
+            <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
           </div>
         </li>
       ))}
@@ -35,8 +73,8 @@ const TaskList = ({ tasks, listId }) => {
         <input
           type="text"
           placeholder="New task"
-          value={text}
-          onChange={event => setText(event.target.value)}
+          value={newText}
+          onChange={event => setNewText(event.target.value)}
           onKeyUp={addNewTask}
         />
       </li>

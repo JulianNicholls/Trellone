@@ -229,5 +229,9 @@ main {
     input {
       width: 100%;
     }
+
+    input.update {
+      flex: 1;
+    }
   }
 }
