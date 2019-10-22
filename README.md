@@ -58,8 +58,8 @@ context and hooks. The checkboxes below show the restarted progress.
   * [ ] Archive list
   * [x] Show list tasks
   * [x] Create new task
-  * [ ] Edit task
-  * [ ] Archive task
+  * [x] Edit task
+  * [x] Archive task
 
 ## ER Diagram
 
