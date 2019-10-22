@@ -14,22 +14,13 @@ router.get('/board/:id', requireAuth, async (req, res) => {
   res.send(lists);
 });
 
-// Get a particular list (am I going to need this?)
-router.get('/:id', requireAuth, async (req, res) => {
-  const list = await List.findById(req.params.id);
-
-  // console.log({ list });
-
-  res.send(list);
-});
-
 // Create a new list
 router.post('/create', requireAuth, async (req, res) => {
   const { name, order, boardId } = req.body;
 
   if (!name || isNaN(order) || !boardId) {
     return res.status(422).send({
-      error: 'You must provide a name, order, and board ID'
+      error: 'You must provide a name, order, and board ID',
     });
   }
 
@@ -37,7 +28,7 @@ router.post('/create', requireAuth, async (req, res) => {
     name,
     order,
     boardId,
-    archived: false
+    archived: false,
   });
 
   const list = await newList.save();
@@ -50,14 +41,14 @@ router.post('/createTask/:id', requireAuth, async (req, res) => {
 
   if (!text || isNaN(order)) {
     return res.status(422).send({
-      error: 'You must provide a task text and an order'
+      error: 'You must provide a task text and an order',
     });
   }
 
   const newTask = {
     text,
     order,
-    archived: false
+    archived: false,
   };
 
   const response = await List.updateOne(
@@ -66,6 +57,21 @@ router.post('/createTask/:id', requireAuth, async (req, res) => {
   );
 
   res.status(201).send(response);
+});
+
+// Update a list
+// "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUcmVsbG9uZSIsInN1YiI6IjVkOWI1NGExYjVjNmRhMDE4MTJmYmVkMCIsImlhdCI6MTU3MTc2OTAxMywiZXhwIjoxNTcxODU5MDEzfQ.QxJuvk6tNaUHd2jNQ1qlZ4gjRYFryYiQB4YV-SClUAg"
+router.put('/update/:id', requireAuth, async (req, res) => {
+  const { name, order, archived, tasks } = req.body;
+
+  const response = await List.updateOne(
+    { _id: req.params.id },
+    { $set: { name, order, archived, tasks } }
+  );
+
+  if (response.nModified === 1) return res.status(202).send(response);
+
+  return res.status(400).send(response);
 });
 
 // Archive a list
@@ -77,7 +83,16 @@ router.post('/:id/archive', requireAuth, async (req, res) => {
 
   // console.log({ response });
 
-  res.send(response);
+  res.status(202).send(response);
+});
+
+// Get a particular list (am I going to need this?)
+router.get('/:id', requireAuth, async (req, res) => {
+  const list = await List.findById(req.params.id);
+
+  console.log({ list });
+
+  res.send(list);
 });
 
 module.exports = router;
