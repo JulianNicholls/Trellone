@@ -8,7 +8,7 @@ import { useLists } from '../context/list';
 const TaskList = ({ tasks, listId }) => {
   const { addTask, updateTask } = useLists();
   const [newText, setNewText] = useState('');
-  const [updating, setUpdating] = useState(false);
+  const [updating, setUpdating] = useState(null);
   const [updateText, setUpdateText] = useState('');
 
   const addNewTask = event => {
@@ -20,7 +20,7 @@ const TaskList = ({ tasks, listId }) => {
 
   const startEdit = task => {
     setUpdateText(task.text);
-    setUpdating(true);
+    setUpdating(task._id);
   };
 
   const editTask = (event, task) => {
@@ -28,9 +28,9 @@ const TaskList = ({ tasks, listId }) => {
       const updatedTask = { ...task, text: updateText };
 
       updateTask(updatedTask, listId);
-      setUpdating(false);
+      setUpdating(null);
     } else if (event.key === 'Escape') {
-      setUpdating(false);
+      setUpdating(null);
     }
   };
 
@@ -41,7 +41,9 @@ const TaskList = ({ tasks, listId }) => {
   };
 
   const renderText = task => {
-    if (updating)
+    console.log({ updating, id: task._id });
+
+    if (updating === task._id)
       return (
         <input
           className="update"
