@@ -11,9 +11,15 @@ const TaskList = ({ tasks, listId }) => {
   const [updating, setUpdating] = useState(null);
   const [updateText, setUpdateText] = useState('');
 
+  const maxOrder = tasks.reduce((max, { order }) => {
+    if (order > max) max = order;
+
+    return max;
+  }, 0);
+
   const addNewTask = event => {
     if (event.key === 'Enter') {
-      addTask(newText, 5, listId);
+      addTask(newText, maxOrder + 1, listId);
       setNewText('');
     }
   };
@@ -41,8 +47,6 @@ const TaskList = ({ tasks, listId }) => {
   };
 
   const renderText = task => {
-    console.log({ updating, id: task._id });
-
     if (updating === task._id)
       return (
         <input
@@ -60,9 +64,11 @@ const TaskList = ({ tasks, listId }) => {
     return <div className="text">{task.text}</div>;
   };
 
+  const order = (a, b) => a.order - b.order;
+
   return (
     <ul className="task-list">
-      {tasks.map(task => (
+      {tasks.sort(order).map(task => (
         <li className="task-list__item" key={task.order}>
           {renderText(task)}
           <div>
