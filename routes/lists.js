@@ -56,7 +56,7 @@ router.post('/createTask/:id', requireAuth, async (req, res) => {
     { $push: { tasks: newTask } }
   );
 
-  res.status(201).send(response);
+  res.status(201).send(await List.findById(req.params.id));
 });
 
 // Update a list
