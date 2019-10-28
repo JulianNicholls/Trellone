@@ -19,6 +19,7 @@ const TaskList = ({ tasks, listId }) => {
 
   const addNewTask = event => {
     if (event.key === 'Enter') {
+      event.preventDefault();
       addTask(newText, maxOrder + 1, listId);
       setNewText('');
     }
@@ -29,13 +30,15 @@ const TaskList = ({ tasks, listId }) => {
     setUpdating(task._id);
   };
 
-  const editTask = (event, task) => {
+  const finishEdit = (event, task) => {
     if (event.key === 'Enter') {
+      event.preventDefault();
       const updatedTask = { ...task, text: updateText };
 
       updateTask(updatedTask, listId);
       setUpdating(null);
     } else if (event.key === 'Escape') {
+      event.preventDefault();
       setUpdating(null);
     }
   };
@@ -54,7 +57,7 @@ const TaskList = ({ tasks, listId }) => {
           type="text"
           value={updateText}
           onChange={event => setUpdateText(event.target.value)}
-          onKeyUp={event => editTask(event, task)}
+          onKeyUp={event => finishEdit(event, task)}
           autoFocus
         />
       );
@@ -64,19 +67,19 @@ const TaskList = ({ tasks, listId }) => {
     return <div className="text">{task.text}</div>;
   };
 
-  const order = (a, b) => a.order - b.order;
-
   return (
     <ul className="task-list">
-      {tasks.sort(order).map(task => (
-        <li className="task-list__item" key={task.order}>
-          {renderText(task)}
-          <div>
-            <FaEdit className="icon" onClick={() => startEdit(task)} />
-            <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
-          </div>
-        </li>
-      ))}
+      {tasks
+        .sort((a, b) => a.order - b.order)
+        .map(task => (
+          <li className="task-list__item" key={task.order}>
+            {renderText(task)}
+            <div>
+              <FaEdit className="icon" onClick={() => startEdit(task)} />
+              <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
+            </div>
+          </li>
+        ))}
       <li className="task-list__item">
         <input
           type="text"
