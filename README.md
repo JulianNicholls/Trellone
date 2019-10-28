@@ -25,6 +25,7 @@ context and hooks. The checkboxes below show the restarted progress.
   * [x] Create Endpoint for single list
   * [x] Create Endpoint for new list
   * [x] Create Endpoint for archive list
+  * [x] Create Endpoint for update list
   * [x] Create Endpoint for new task
   * [x] Create Endpoint for archive task
 

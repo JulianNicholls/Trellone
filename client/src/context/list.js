@@ -64,15 +64,15 @@ export const ListProvider = ({ children }) => {
 
   const updateList = async list => {
     try {
-      await axios.put(`/api/lists/update/${list._id}`, list, {
+      await axios.put(`/api/lists/${list._id}/update`, list, {
         headers: {
           Authorization: token,
         },
       });
 
-      const newLists = [...lists];
-      const listIdx = newLists.findIndex(({ _id }) => _id === list._id);
+      const listIdx = lists.findIndex(({ _id }) => _id === list._id);
 
+      const newLists = [...lists];
       newLists[listIdx] = list;
       setLists(newLists);
     } catch (err) {

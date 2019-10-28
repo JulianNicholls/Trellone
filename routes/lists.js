@@ -60,8 +60,7 @@ router.post('/createTask/:id', requireAuth, async (req, res) => {
 });
 
 // Update a list
-// "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJUcmVsbG9uZSIsInN1YiI6IjVkOWI1NGExYjVjNmRhMDE4MTJmYmVkMCIsImlhdCI6MTU3MTc2OTAxMywiZXhwIjoxNTcxODU5MDEzfQ.QxJuvk6tNaUHd2jNQ1qlZ4gjRYFryYiQB4YV-SClUAg"
-router.put('/update/:id', requireAuth, async (req, res) => {
+router.put('/:id/update', requireAuth, async (req, res) => {
   const { name, order, archived, tasks } = req.body;
 
   const response = await List.updateOne(
