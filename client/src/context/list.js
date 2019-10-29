@@ -11,7 +11,6 @@ export const ListProvider = ({ children }) => {
   const { token } = useCurrentUser();
   const { currentBoard } = useBoards();
   const [lists, setLists] = useState([]);
-  const [columns, setColumns] = useState({});
 
   useEffect(() => {
     const loadLists = async () => {
@@ -23,8 +22,6 @@ export const ListProvider = ({ children }) => {
         });
 
         setLists(response.data);
-
-        buildColumns(response.data);
       } catch (err) {
         console.error('List loading failed:', err);
       }
@@ -32,35 +29,6 @@ export const ListProvider = ({ children }) => {
 
     if (token && currentBoard) loadLists();
   }, [token, currentBoard]);
-
-  const buildColumns = boardLists => {
-    const columnData = {};
-    columnData.columns = boardLists.reduce(
-      (listList, { _id, name, order, archived, tasks }) => {
-        listList[_id] = {
-          _id,
-          name,
-          order,
-          archived,
-          taskIds: tasks.map(({ _id }) => _id),
-        };
-        return listList;
-      },
-      {}
-    );
-
-    columnData.columnOrder = boardLists.map(({ _id }) => _id);
-
-    columnData.tasks = boardLists.reduce((taskList, { tasks }) => {
-      tasks.forEach(task => (taskList[task._id] = task));
-
-      return taskList;
-    }, {});
-
-    console.log(columnData);
-
-    setColumns(columnData);
-  };
 
   const addTask = async (text, order, listId) => {
     try {
@@ -114,7 +82,6 @@ export const ListProvider = ({ children }) => {
 
   const state = {
     lists,
-    columns,
     addTask,
     updateTask,
     updateList,

@@ -33,7 +33,8 @@ const ListsPage = () => {
       }
     : {};
 
-  const renderLists = () => lists.map(list => <List key={list._id} {...list} />);
+  const renderLists = () =>
+    lists.map((list, index) => <List key={index} {...list} />);
 
   return (
     <div style={bgStyle}>
