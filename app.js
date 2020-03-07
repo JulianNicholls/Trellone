@@ -8,11 +8,19 @@ const usersRouter = require('./routes/users');
 const boardsRouter = require('./routes/boards');
 const listsRouter = require('./routes/lists');
 
-mongoose.connect('mongodb://localhost/trellone', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.set('useCreateIndex', true);
+mongoose
+  .connect('mongodb://localhost/trellone', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(
+    () => console.log('Connected to Local Mongo'),
+    err => {
+      console.error('Cannot connect to Mongo:', err);
+      process.exit(-1);
+    }
+  );
 
 const app = express();
 
