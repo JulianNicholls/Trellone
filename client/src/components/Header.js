@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { useCurrentUser } from '../context/user';
 
-const Header = ({ history }) => {
+const Header = ({ location, history }) => {
   const {
     token,
     user: { avatarURL, displayName },
@@ -30,6 +30,8 @@ const Header = ({ history }) => {
     }
 
     // Not logged in, show buttons
+
+    console.log({ location });
 
     return (
       <>
