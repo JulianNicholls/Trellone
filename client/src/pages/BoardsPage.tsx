@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { useBoards } from '../context/board';
 
 const BoardsPage = () => {
-  const { boards } = useBoards();
+  const { boards }: BoardState = useBoards();
 
-  const renderBoards = () =>
-    boards.map(({ _id, name, backgroundURL }) => (
+  const renderBoards = (): Array<JSX.Element> =>
+    boards.map(({ _id, name, backgroundURL }: Board) => (
       <div key={_id} className="board-card">
         <Link to={`/lists/${_id}`}>
           <div className="board-card__content">

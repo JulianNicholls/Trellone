@@ -1,15 +1,19 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { useCurrentUser } from './user';
 
-const BoardContext = createContext();
+const BoardContext = React.createContext<BoardState>({} as BoardState);
 
-export const BoardProvider = ({ children }) => {
+interface BoardProviderProps {
+  children: React.ReactNode;
+}
+
+export const BoardProvider = ({ children }: BoardProviderProps) => {
   const { token } = useCurrentUser();
-  const [boards, setBoards] = useState([]);
-  const [currentBoard, setCurrentBoard] = useState(null);
+  const [boards, setBoards] = useState<Array<Board>>([]);
+  const [currentBoard, setCurrentBoard] = useState<Board | undefined>(undefined);
 
   useEffect(() => {
     const loadBoards = async () => {
@@ -29,7 +33,7 @@ export const BoardProvider = ({ children }) => {
     if (token) loadBoards();
   }, [token]);
 
-  const boardById = boardId => {
+  const boardById = (boardId: string): Board | undefined => {
     const board = boards.find(({ _id }) => _id === boardId);
 
     if (boards.length > 0 && !board)
@@ -53,8 +57,8 @@ BoardProvider.propTypes = {
   children: PropTypes.element,
 };
 
-export const useBoards = () => {
-  const context = useContext(BoardContext);
+export const useBoards = (): BoardState => {
+  const context: BoardState = useContext(BoardContext);
 
   if (context === undefined)
     throw new Error('useBoards must be used within a BoardProvider block');
