@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, FormEvent } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import ErrorsPanel from '../components/ErrorsPanel';
 import { useCurrentUser } from '../context/user';
 
-const LoginPage = ({ history }) => {
+const LoginPage = ({ history }: RouteComponentProps): JSX.Element => {
   const { login } = useCurrentUser();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errors, setErrors] = useState<Array<string>>([]);
 
-  const loginUser = async event => {
+  const loginUser = async (event: FormEvent) => {
     event.preventDefault();
 
-    const newErrors = [];
+    const newErrors: Array<string> = [];
 
     if (email === '') newErrors.push('You must enter an email address');
     if (password.length < 6)

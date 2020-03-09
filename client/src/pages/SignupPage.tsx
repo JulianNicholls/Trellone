@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, FormEvent } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import ErrorsPanel from '../components/ErrorsPanel';
 import { useCurrentUser } from '../context/user';
 
-const SignupPage = ({ history }) => {
+const SignupPage = ({ history }: RouteComponentProps): JSX.Element => {
   const { signup } = useCurrentUser();
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [avatarURL, setAvatarURL] = useState('');
+  const [displayName, setDisplayName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [avatarURL, setAvatarURL] = useState<string>('');
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState<Array<string>>([]);
 
-  const signupUser = async event => {
+  const signupUser = async (event: FormEvent) => {
     event.preventDefault();
 
-    const newErrors = [];
+    const newErrors: Array<string> = [];
 
     if (displayName.length < 6)
       newErrors.push('You must enter a display name of at least 6 characters');
@@ -29,7 +29,6 @@ const SignupPage = ({ history }) => {
 
       if (response.ok) return history.push('/');
 
-      //      console.log('signupUser:', { response });
       newErrors.push(response.data.error);
     }
 
