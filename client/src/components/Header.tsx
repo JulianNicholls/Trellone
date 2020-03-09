@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { useCurrentUser } from '../context/user';
 
-const Header = ({ location, history }) => {
+const Header = ({ location, history }: RouteComponentProps) => {
   const {
     token,
     user: { avatarURL, displayName },
