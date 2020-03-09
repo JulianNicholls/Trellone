@@ -6,7 +6,7 @@ import TaskList from '../components/TaskList';
 import { useBoards } from '../context/board';
 import { useLists } from '../context/list';
 
-const List = ({ _id, name, tasks }) => (
+const List = ({ _id, name, tasks }: List) => (
   <div className="list-card">
     <div className="list-card__header">{name}</div>
     <div className="list-card__content">
@@ -15,10 +15,14 @@ const List = ({ _id, name, tasks }) => (
   </div>
 );
 
-const ListsPage = () => {
+interface ListPageParams {
+  boardId?: string;
+}
+
+const ListsPage = (): JSX.Element => {
   const { boardById } = useBoards();
-  const params = useParams();
-  const board = boardById(params.boardId);
+  const params: ListPageParams = useParams();
+  const board = boardById(params.boardId!);
   const { lists } = useLists();
 
   if (board === undefined) return <div className="loading">Loading...</div>;

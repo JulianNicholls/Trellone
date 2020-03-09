@@ -5,17 +5,21 @@ import axios from 'axios';
 import { useCurrentUser } from './user';
 import { useBoards } from './board';
 
-const ListContext = createContext();
+const ListContext = createContext<ListState>({} as ListState);
 
-export const ListProvider = ({ children }) => {
+interface ListProviderProps {
+  children: React.ReactNode;
+}
+
+export const ListProvider = ({ children }: ListProviderProps): JSX.Element => {
   const { token } = useCurrentUser();
   const { currentBoard } = useBoards();
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useState<Array<List>>([]);
 
   useEffect(() => {
     const loadLists = async () => {
       try {
-        const response = await axios.get(`/api/lists/board/${currentBoard._id}`, {
+        const response = await axios.get(`/api/lists/board/${currentBoard!._id}`, {
           headers: {
             Authorization: token,
           },
@@ -30,7 +34,7 @@ export const ListProvider = ({ children }) => {
     if (token && currentBoard) loadLists();
   }, [token, currentBoard]);
 
-  const addTask = async (text, order, listId) => {
+  const addTask = async (text: string, order: number, listId: string) => {
     try {
       const response = await axios.post(
         `/api/lists/createTask/${listId}`,
@@ -52,17 +56,17 @@ export const ListProvider = ({ children }) => {
     }
   };
 
-  const updateTask = (task, listId) => {
-    const newLists = [...lists];
-    const list = newLists.find(({ _id }) => _id === listId);
+  const updateTask = (task: Task, listId: string): void => {
+    const newLists: Array<List> = [...lists];
+    const list: List | undefined = newLists.find(({ _id }) => _id === listId);
 
-    const taskIdx = list.tasks.findIndex(({ _id }) => _id === task._id);
-    list.tasks[taskIdx] = task;
+    const taskIdx = list!.tasks.findIndex(({ _id }) => _id === task._id);
+    list!.tasks[taskIdx] = task;
 
-    updateList(list);
+    updateList(list!);
   };
 
-  const updateList = async list => {
+  const updateList = async (list: List) => {
     try {
       await axios.put(`/api/lists/${list._id}/update`, list, {
         headers: {
@@ -80,7 +84,7 @@ export const ListProvider = ({ children }) => {
     }
   };
 
-  const state = {
+  const state: ListState = {
     lists,
     addTask,
     updateTask,
