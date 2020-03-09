@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { useCurrentUser } from './user';
@@ -51,10 +50,6 @@ export const BoardProvider = ({ children }: BoardProviderProps) => {
   };
 
   return <BoardContext.Provider value={state}>{children}</BoardContext.Provider>;
-};
-
-BoardProvider.propTypes = {
-  children: PropTypes.element,
 };
 
 export const useBoards = (): BoardState => {

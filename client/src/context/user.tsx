@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const EMPTY_USER = {
@@ -98,10 +97,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const userState = { token, user, login, signup, logout };
 
   return <UserContext.Provider value={userState}>{children}</UserContext.Provider>;
-};
-
-UserProvider.propTypes = {
-  children: PropTypes.element,
 };
 
 export const useCurrentUser = (): UserState => {

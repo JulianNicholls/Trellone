@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { useCurrentUser } from './user';
@@ -92,10 +91,6 @@ export const ListProvider = ({ children }: ListProviderProps): JSX.Element => {
   };
 
   return <ListContext.Provider value={state}>{children}</ListContext.Provider>;
-};
-
-ListProvider.propTypes = {
-  children: PropTypes.element,
 };
 
 export const useLists = () => {

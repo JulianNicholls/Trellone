@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 import { useLists } from '../context/list';
 
-const TaskList = ({ tasks, listId }) => {
+interface TaskListProps {
+  tasks: Array<Task>;
+  listId: string;
+}
+
+const TaskList = ({ tasks, listId }: TaskListProps) => {
   const { addTask, updateTask } = useLists();
-  const [newText, setNewText] = useState('');
-  const [updating, setUpdating] = useState(null);
-  const [updateText, setUpdateText] = useState('');
+  const [newText, setNewText] = useState<string>('');
+  const [updating, setUpdating] = useState<string>('');
+  const [updateText, setUpdateText] = useState<string>('');
 
   const maxOrder = tasks.reduce((max, { order }) => {
     if (order > max) max = order;
@@ -17,7 +22,7 @@ const TaskList = ({ tasks, listId }) => {
     return max;
   }, 0);
 
-  const addNewTask = event => {
+  const addNewTask = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       addTask(newText, maxOrder + 1, listId);
@@ -25,31 +30,34 @@ const TaskList = ({ tasks, listId }) => {
     }
   };
 
-  const startEdit = task => {
+  const startEdit = (task: Task) => {
     setUpdateText(task.text);
     setUpdating(task._id);
   };
 
-  const finishEdit = (event, task) => {
+  const finishEdit = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    task: Task
+  ) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const updatedTask = { ...task, text: updateText };
 
       updateTask(updatedTask, listId);
-      setUpdating(null);
+      setUpdating('');
     } else if (event.key === 'Escape') {
       event.preventDefault();
-      setUpdating(null);
+      setUpdating('');
     }
   };
 
-  const archiveTask = task => {
+  const archiveTask = (task: Task) => {
     const updatedTask = { ...task, archived: !task.archived };
 
     updateTask(updatedTask, listId);
   };
 
-  const renderText = task => {
+  const renderText = (task: Task) => {
     if (updating === task._id)
       return (
         <input
