@@ -12,7 +12,7 @@ interface ListProviderProps {
 }
 
 export const ListProvider = ({ children }: ListProviderProps): JSX.Element => {
-  const { token } = useCurrentUser();
+  const { token }: UserState = useCurrentUser();
   const { currentBoard } = useBoards();
   const [lists, setLists] = useState<Array<List>>([]);
 

@@ -33,3 +33,22 @@ interface ListState {
   updateTask: (task: Task, listId: string) => void;
   updateList: (list: List) => void;
 }
+
+interface User {
+  displayName: string;
+  email: string;
+  avatarURL: string;
+}
+
+interface UserState {
+  token: string;
+  user: User;
+  login: (email: string, password: string) => Promise;
+  signup: (
+    email: string,
+    password: string,
+    displayName: string,
+    avatarURL: string
+  ) => Promise;
+  logout: () => void;
+}
