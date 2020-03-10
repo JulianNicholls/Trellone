@@ -1,5 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
@@ -99,18 +98,6 @@ const TaskList = ({ tasks, listId }: TaskListProps) => {
       </li>
     </ul>
   );
-};
-
-TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      order: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      archived: PropTypes.bool.isRequired,
-    })
-  ).isRequired,
-  listId: PropTypes.string.isRequired,
 };
 
 export default TaskList;

@@ -4,7 +4,7 @@ interface ErrorsPanelProps {
   errors: Array<string>;
 }
 
-const ErrorsPanel = ({ errors }: ErrorsPanelProps) => {
+const ErrorsPanel = ({ errors }: ErrorsPanelProps): JSX.Element | null => {
   if (errors.length === 0) return null;
 
   return (
