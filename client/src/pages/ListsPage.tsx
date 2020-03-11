@@ -37,8 +37,8 @@ const ListsPage = (): JSX.Element => {
       }
     : {};
 
-  const renderLists = () =>
-    lists.map((list, index) => <List key={index} {...list} />);
+  const renderLists = (): Array<JSX.Element> =>
+    lists.map((list: List, index: number) => <List key={index} {...list} />);
 
   return (
     <div style={bgStyle}>
@@ -49,7 +49,7 @@ const ListsPage = (): JSX.Element => {
           {renderLists()}
           <div className="list-card">
             <div className="list-card__content">
-              <button>Add List</button>
+              <button className="add-button">Add task list</button>
             </div>
           </div>
         </div>

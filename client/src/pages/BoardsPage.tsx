@@ -25,7 +25,7 @@ const BoardsPage = () => {
       <div className="board-grid">
         {renderBoards()}
         <div className="board-card">
-          <button>Create New</button>
+          <button className="add-button">Add board</button>
         </div>
       </div>
     </main>
