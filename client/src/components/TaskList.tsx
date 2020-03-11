@@ -7,9 +7,10 @@ import { useLists } from '../context/list';
 interface TaskListProps {
   tasks: Array<Task>;
   listId: string;
+  showArchived?: boolean;
 }
 
-const TaskList = ({ tasks, listId }: TaskListProps) => {
+const TaskList = ({ tasks, listId, showArchived = false }: TaskListProps) => {
   const { addTask, updateTask } = useLists();
   const [newText, setNewText] = useState<string>('');
   const [updating, setUpdating] = useState<string>('');
@@ -78,15 +79,18 @@ const TaskList = ({ tasks, listId }: TaskListProps) => {
     <ul className="task-list">
       {tasks
         .sort((a, b) => a.order - b.order)
-        .map(task => (
-          <li className="task-list__item" key={task.order}>
-            {renderText(task)}
-            <div>
-              <FaEdit className="icon" onClick={() => startEdit(task)} />
-              <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
-            </div>
-          </li>
-        ))}
+        .map(task => {
+          if (!task.archived || showArchived)
+            return (
+              <li className="task-list__item" key={task.order}>
+                {renderText(task)}
+                <div>
+                  <FaEdit className="icon" onClick={() => startEdit(task)} />
+                  <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
+                </div>
+              </li>
+            );
+        })}
       <li className="task-list__item">
         <input
           type="text"
