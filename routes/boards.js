@@ -38,4 +38,12 @@ router.post('/create', requireAuth, async (req, res) => {
   res.status(201).send(board);
 });
 
+// Delete a board
+router.delete('/:id', async (req, res) => {
+  const response = await Board.deleteOne({ _id: req.params.id });
+
+  if (response.deletedCount === 1) res.json({ ok: true });
+  else res.json({ error: true, response });
+});
+
 module.exports = router;
