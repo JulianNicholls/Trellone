@@ -30,6 +30,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         setUser(response.data.user);
       } catch (err) {
         console.log('Token expired');
+        setToken('');
         localStorage.removeItem('trelloneAuth');
       }
     };
@@ -51,9 +52,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       localStorage.trelloneAuth = userToken;
       setUser(loggedinUser);
 
-      return {
-        ok: true,
-      };
+      return { ok: true };
     } catch (error) {
       return { error };
     }
@@ -80,9 +79,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       localStorage.trelloneAuth = userToken;
       setUser(newUser);
 
-      return {
-        ok: true,
-      };
+      return { ok: true };
     } catch (err) {
       return err.response;
     }

@@ -80,16 +80,15 @@ const TaskList = ({ tasks, listId, showArchived = false }: TaskListProps) => {
       {tasks
         .sort((a, b) => a.order - b.order)
         .map(task => {
-          if (!task.archived || showArchived)
-            return (
-              <li className="task-list__item" key={task.order}>
-                {renderText(task)}
-                <div>
-                  <FaEdit className="icon" onClick={() => startEdit(task)} />
-                  <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
-                </div>
-              </li>
-            );
+          return !task.archived || showArchived ? (
+            <li className="task-list__item" key={task.order}>
+              {renderText(task)}
+              <div>
+                <FaEdit className="icon" onClick={() => startEdit(task)} />
+                <FaTrashAlt className="icon" onClick={() => archiveTask(task)} />
+              </div>
+            </li>
+          ) : null;
         })}
       <li className="task-list__item">
         <input
