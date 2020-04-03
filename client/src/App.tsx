@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
@@ -7,9 +12,14 @@ import SignupPage from './pages/SignupPage';
 import BoardsPage from './pages/BoardsPage';
 import ListsPage from './pages/ListsPage';
 
+import { useCurrentUser } from './context/user';
+
 import './styles.scss';
 
 const App = () => {
+  const { token, user }: UserState = useCurrentUser();
+  const loggedIn = token !== '' && user.displayName !== '';
+
   return (
     <Router>
       <div>
@@ -24,11 +34,11 @@ const App = () => {
           </Route>
 
           <Route path="/lists/:boardId">
-            <ListsPage />
+            {loggedIn ? <ListsPage /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/">
-            <BoardsPage />
+            {loggedIn ? <BoardsPage /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </div>
