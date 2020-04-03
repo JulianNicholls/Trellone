@@ -31,8 +31,6 @@ const Header = ({ location, history }: RouteComponentProps) => {
 
     // Not logged in, show buttons
 
-    console.log({ location });
-
     return (
       <>
         <Link to="/signup" className="button">
