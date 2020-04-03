@@ -18,9 +18,7 @@ export const BoardProvider = ({ children }: BoardProviderProps) => {
     const loadBoards = async () => {
       try {
         const response = await axios.get('/api/boards', {
-          headers: {
-            Authorization: token,
-          },
+          headers: { Authorization: `bearer ${token}` },
         });
 
         setBoards(response.data);

@@ -80,16 +80,12 @@ router.post('/:id/archive', requireAuth, async (req, res) => {
     { $set: { archived: true } }
   );
 
-  // console.log({ response });
-
   res.status(202).send(response);
 });
 
 // Get a particular list (am I going to need this?)
 router.get('/:id', requireAuth, async (req, res) => {
   const list = await List.findById(req.params.id);
-
-  console.log({ list });
 
   res.send(list);
 });

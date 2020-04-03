@@ -19,14 +19,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   useEffect(() => {
     const loadUser = async (userToken: string) => {
+      setToken(userToken);
+
       try {
         const response = await axios.get('/api/users/current', {
-          headers: {
-            Authorization: userToken,
-          },
+          headers: { Authorization: `bearer ${userToken}` },
         });
 
-        setToken(userToken);
         setUser(response.data.user);
       } catch (err) {
         console.log('Token expired');

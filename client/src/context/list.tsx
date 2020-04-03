@@ -19,9 +19,7 @@ export const ListProvider = ({ children }: ListProviderProps): JSX.Element => {
     const loadLists = async () => {
       try {
         const response = await axios.get(`/api/lists/board/${currentBoard!._id}`, {
-          headers: {
-            Authorization: token,
-          },
+          headers: { Authorization: `bearer ${token}` },
         });
 
         setLists(response.data);
@@ -39,9 +37,7 @@ export const ListProvider = ({ children }: ListProviderProps): JSX.Element => {
         `/api/lists/createTask/${listId}`,
         { text, order },
         {
-          headers: {
-            Authorization: token,
-          },
+          headers: { Authorization: `bearer ${token}` },
         }
       );
 
@@ -68,9 +64,7 @@ export const ListProvider = ({ children }: ListProviderProps): JSX.Element => {
   const updateList = async (list: List) => {
     try {
       await axios.put(`/api/lists/${list._id}/update`, list, {
-        headers: {
-          Authorization: token,
-        },
+        headers: { Authorization: `bearer ${token}` },
       });
 
       const listIdx = lists.findIndex(({ _id }) => _id === list._id);
